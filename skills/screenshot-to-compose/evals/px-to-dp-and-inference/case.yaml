@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: px-to-dp-and-inference
+expected_outcome: |
+  Converts px to dp with a stated frame, samples colours, separates observed from inferred.

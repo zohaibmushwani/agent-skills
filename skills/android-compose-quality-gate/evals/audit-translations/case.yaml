@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: audit-translations
+expected_outcome: |
+  Uses strings_audit.py and reports placeholder and plural-quantity errors for Arabic.

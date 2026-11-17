@@ -1,0 +1,8 @@
+# Text fit, devices and layout
+1. **Text never cuts badly.** Every text has a deliberate `maxLines` and `overflow = Ellipsis`. Button, tab, bottom-bar, chip, badge and top-bar text is single line; the flexible text in a row takes `weight(1f, fill = false)` so the badge/chevron keeps its width. Body copy and dialog text wrap but still get `maxLines` where space is bounded.
+2. **Button pairs** (negative + positive): both labels share **one text size**; when either does not fit, both shrink together to a readable floor (about 12 sp); only then stack. Never one large and one small label.
+3. **Chip rows** that must stay whole use `FlowRow`.
+4. **Device matrix:** render at 360 x 526, 360 x 640, 360 x 800, 393 x 852, 402 x 874, 411 x 891 dp, font scale 1.0 and 1.3; add 600 dp+ for tablets/foldables. Check German, French, Arabic and Urdu at 320 dp and 360 x 526.
+5. **Scroll or fit, per screen:** lists and long content scroll (`LazyColumn`). A screen that can fit is centred in the free space with bounded scaling (scrolling only below the minimum scale). No jump when the keyboard opens (`imePadding`), no half-visible button, no layout shift when data or an ad arrives (reserve the space or animate it).
+6. **Layout:** prefer weights, aspect ratios and `widthIn(max=)` over fixed sizes; avoid `Modifier.offset` hacks. Sibling cards use a fixed `aspectRatio`; never `IntrinsicSize.Min` over children that subcompose (`BoxWithConstraints`, lazy lists): it crashes at runtime.
+7. Dynamic values (`BoxWithConstraints`, weights) are fine if the result matches the design on the design frame and degrades gracefully below it.

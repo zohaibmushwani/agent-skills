@@ -1,0 +1,1 @@
+Mere paas ek 941 x 2037 px ka AI-generated screenshot hai (docs/design/reference/home.png) ek calorie-tracker home screen ka. Isko Jetpack Compose mein banana hai. Sab se pehle design system ke liye numbers nikalo: ek button 96 px height ka hai, gap 24 px ka hai, aur primary colour ka pixel (120, 300) par hai. Dark theme ka koi screenshot nahi hai.

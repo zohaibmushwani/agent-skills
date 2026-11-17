@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: no-cropping-assets
+expected_outcome: |
+  Refuses to crop assets from the reference and proposes generated assets with a recorded prompt.

@@ -1,0 +1,1 @@
+Review karo: yeh Compose screen "production ready" hai? Code: Row(Modifier.height(IntrinsicSize.Min)) mein do cards hain jin mein BoxWithConstraints hai; Text("Continue") bina maxLines; paddingLeft = 16.dp; Color(0xFF2F6BFF) screen mein; API call composable ke LaunchedEffect mein jo har recomposition par lag sakti hai. Pura checklist chalao.
