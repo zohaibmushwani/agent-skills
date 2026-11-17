@@ -1,4 +1,7 @@
 # Changelog
+## 0.2.3
+- guidelines-log: Setup also adds the two instruction lines when the log exists but CLAUDE.md/AGENTS.md lacks them.
+
 ## 0.2.2
 - guidelines-log: restored the original log + fold-into-GUIDELINES flow as the default; routing, size and audit are optional extras.
 

@@ -8,7 +8,7 @@ description: Keep a project's standing rules alive across sessions. When the use
 Agents forget between sessions; a repository does not. Rules the user states once should be written where the next session will read them, in the same turn they were given, or they are lost.
 
 ## Setup (once per repo)
-If the repo has no log, create `docs/guidelines/GUIDELINES_LOG.md` and `docs/guidelines/GUIDELINES.md` from `templates/`, and add two lines to the repo's agent instructions file (`CLAUDE.md` / `AGENTS.md`): read the guidelines and the newest log entries before any UI or feature task; record new rules in the same turn.
+If the repo has no log, create `docs/guidelines/GUIDELINES_LOG.md` and `docs/guidelines/GUIDELINES.md` from `templates/`, and add two lines to the repo's agent instructions file (`CLAUDE.md` / `AGENTS.md`): read the guidelines and the newest log entries before any UI or feature task; record new rules in the same turn. If the log already exists but the instructions file lacks those two lines, add them too (ask first if the file is shared or managed by others).
 
 ## When the user states a rule
 1. Decide if it is **durable** (applies to all future work: "colours only through theme tokens") or **one-off** (this task only: "make this button blue"). One-off instructions are not logged. Also record a **confirmed non-obvious approach** ("yes, exactly like that"), not only corrections; skip things obvious from the code and temporary debugging notes.

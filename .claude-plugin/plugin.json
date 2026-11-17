@@ -1,6 +1,6 @@
 {
   "name": "agent-skills",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Five skills: oss-first-development (reuse open-source first), app-design-studio (mobile UI design repos with usability gates), screenshot-to-compose (design to Compose), android-compose-quality-gate (checklist + lint) and guidelines-log (durable rules).",
   "author": { "name": "zohaibmushwani" },
   "license": "MIT",
