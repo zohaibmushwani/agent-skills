@@ -1,4 +1,7 @@
 # Changelog
+## 0.2.1
+- guidelines-log rewritten after researching existing self-improvement/memory skills and the Claude Code memory docs: routing to the right layer, size and contradiction checks, confirmed approaches, `rules_audit.py` (+ self-test), `references/research.md`.
+
 ## 0.2.0
 - Added screenshot-to-compose (measure/convert/compare scripts), android-compose-quality-gate (compose_lint.py, strings_audit.py + self-test) and guidelines-log.
 

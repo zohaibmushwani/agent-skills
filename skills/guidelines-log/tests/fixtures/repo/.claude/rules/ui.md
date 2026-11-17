@@ -1,0 +1,2 @@
+- Always use theme tokens for every colour in screens, never hex values.
+- Never show a general message for network errors, show the technical error text instead.

@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: detects-conflict-and-size
+expected_outcome: |
+  Finds that the new rule contradicts an existing one and that the always-loaded file is over budget, and fixes both instead of appending.

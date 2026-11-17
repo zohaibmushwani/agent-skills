@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: routes-must-never-break-rule
+expected_outcome: |
+  Routes a must-never-break rule to a script or hook, with a one-line rule pointing at it, instead of only adding prose.

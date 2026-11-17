@@ -1,1 +1,1 @@
-Repo mein docs/guidelines/GUIDELINES_LOG.md aur GUIDELINES.md hain. Meri nayi hidayat: "aaj se har network error ka technical cause log karo lekin user ko sirf general message dikhao, exception ka text kabhi nahi." Aur is button ka color abhi sirf is screen ke liye neela kar do.
+Repo mein docs/guidelines/GUIDELINES_LOG.md aur GUIDELINES.md hain. Meri nayi hidayat: 'aaj se har network error ka technical cause log karo lekin user ko sirf general message dikhao, exception ka text kabhi nahi.' Aur is button ka color abhi sirf is screen ke liye neela kar do.

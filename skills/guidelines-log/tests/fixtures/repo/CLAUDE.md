@@ -1,0 +1,12 @@
+# Project
+- Always use theme tokens for every colour in screens, never hex values.
+- Read `docs/guidelines/MISSING_FILE.md` before any UI task and follow it.
+- Network errors: always show the user a general message instead of technical text.
+- api_key = "abcd1234efgh5678ijkl"
+- line 5
+- line 6
+- line 7
+- line 8
+- line 9
+- line 10
+- line 11

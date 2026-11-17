@@ -1,0 +1,1 @@
+CLAUDE.md 340 lines ka hai aur usmein likha hai 'network error par technical message dikhao'. Meri nayi hidayat: 'network error par sirf general message dikhao, technical cause sirf log karo.' Record karo.
