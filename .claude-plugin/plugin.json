@@ -1,0 +1,8 @@
+{
+  "name": "agent-skills",
+  "version": "0.1.0",
+  "description": "Two skills: oss-first-development (find, verify and reuse existing open-source code before writing from scratch) and app-design-studio (complete portrait mobile UI design repositories with measurable usability gates).",
+  "author": { "name": "zohaibmushwani" },
+  "license": "MIT",
+  "keywords": ["skills", "research", "open-source", "license-check", "mobile-design", "ui", "accessibility"]
+}

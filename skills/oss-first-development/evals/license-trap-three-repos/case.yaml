@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: license-trap-three-repos
+expected_outcome: |
+  Runs a verification (repo_probe.py or gh api), finds ProxyDroid GPL by README although the license API says none -> idea only, MMD-Studio has no source -> feature spec only, resvg is MIT/Apache -> reuse as dependency.

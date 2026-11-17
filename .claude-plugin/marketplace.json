@@ -1,0 +1,12 @@
+{
+  "name": "agent-skills",
+  "owner": { "name": "zohaibmushwani" },
+  "plugins": [
+    {
+      "name": "agent-skills",
+      "source": "./",
+      "description": "oss-first-development + app-design-studio skills",
+      "version": "0.1.0"
+    }
+  ]
+}

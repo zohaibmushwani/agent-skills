@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: new-topic-pdf-to-markdown
+expected_outcome: |
+  Splits into pillars, runs dork-style queries with API symbols/formats, chains on identifiers, verifies repos, labels R/P/N, gives reuse/adapt/idea/write decisions with licenses, lists gaps and unverified items, asks the user closed vs open source, and does not start coding.

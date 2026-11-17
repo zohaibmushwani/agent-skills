@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: inventory-for-pdf-reader
+expected_outcome: |
+  A confirmed inventory.json with entry/auth/home/feature/detail/settings/system groups, states per data screen, dialogs and sheets, plus 3 distinct named design bible directions, then a stop for the user's pick.

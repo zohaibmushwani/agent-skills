@@ -1,0 +1,14 @@
+{
+ "common": "fork:no archived:no",
+ "concepts": {
+  "audio_fft_visualizer": ["(lang:Kotlin OR lang:Java) android.media.audiofx.Visualizer AND getFft", "(lang:Kotlin OR lang:Java) AudioRecord AND (FFT OR fft OR spectrum)"],
+  "audio_drives_gl_uniform": ["(lang:Kotlin OR lang:Java) GLSurfaceView AND (AudioRecord OR Visualizer OR getFft) AND glUniform"],
+  "skeletal_skinning_gles": ["(lang:Kotlin OR lang:Java OR lang:C++) GLES AND (jointMatrices OR u_jointMatrix OR uBones OR boneMatrices OR skinMatrix)"],
+  "gltf_or_vrm_on_android": ["(lang:Kotlin OR lang:Java OR lang:C++) (gltf OR glTF OR VRM) AND (GLES OR GLSurfaceView)"],
+  "mmd_pmx_vmd": ["(lang:Kotlin OR lang:Java OR lang:C++) (PMX OR VMD) AND (GLES OR OpenGL)"],
+  "shadertoy_style_uniforms": ["(lang:Kotlin OR lang:Java) iResolution AND iTime AND GLSurfaceView", "lang:GLSL iChannel0 AND iTime AND (bass OR audio OR fft)"],
+  "bloom_postprocess_gles": ["(lang:Kotlin OR lang:Java OR lang:C++) bloom AND (GLES OR GLSurfaceView) AND framebuffer"],
+  "beat_onset_detection": ["(lang:Kotlin OR lang:Java OR lang:C++) (spectralFlux OR onsetDetect OR beatDetect OR BeatDetector)"],
+  "gles3_particles_transform_feedback": ["(lang:Kotlin OR lang:Java OR lang:C++) glTransformFeedbackVaryings AND GLES30"]
+ }
+}

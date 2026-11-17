@@ -1,0 +1,5 @@
+{"app":"Example Reader","items":[
+  {"id":"splash-01","group":"entry","title":"Splash","states":["default"],"priority":"P0"},
+  {"id":"home-01","group":"home","title":"Home","states":["default","loading","empty","error"],"priority":"P0"},
+  {"id":"settings-01","group":"settings","title":"Settings","states":["default"],"priority":"P0"}
+]}

@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: audits-bad-tokens
+expected_outcome: |
+  Runs scripts/run_gates.py, reports contrast failure for text-secondary, touch target 32<48, proposes fixes that keep elegance without lowering the floor.

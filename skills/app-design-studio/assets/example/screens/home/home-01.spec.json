@@ -1,0 +1,6 @@
+{"id":"home-01","title":"Home","mode":"light","size":[412,892],"primary_actions":1,
+ "elements":[
+  {"id":"fab-add","type":"button","interactive":true,"primary":true,"w":56,"h":56,"y":780,"font":0,"fg":"on-primary","bg":"primary"},
+  {"id":"title","type":"text","interactive":false,"w":200,"h":32,"font":24,"fg":"text","bg":"bg"},
+  {"id":"row-1","type":"row","interactive":true,"w":372,"h":64,"font":16,"fg":"text","bg":"surface"}
+ ]}

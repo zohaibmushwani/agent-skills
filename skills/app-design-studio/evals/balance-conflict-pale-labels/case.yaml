@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: balance-conflict-pale-labels
+expected_outcome: |
+  Keeps usability floor, recovers elegance via weight/spacing/size contrast, updates tokens so contrast passes 4.5:1, re-runs contrast_check.
