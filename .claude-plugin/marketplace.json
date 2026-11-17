@@ -6,7 +6,7 @@
       "name": "agent-skills",
       "source": "./",
       "description": "Five skills: research, design, screenshot-to-compose, quality gate, guidelines log",
-      "version": "0.2.1"
+      "version": "0.2.2"
     }
   ]
 }

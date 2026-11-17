@@ -1,4 +1,7 @@
 # Changelog
+## 0.2.2
+- guidelines-log: restored the original log + fold-into-GUIDELINES flow as the default; routing, size and audit are optional extras.
+
 ## 0.2.1
 - guidelines-log rewritten after researching existing self-improvement/memory skills and the Claude Code memory docs: routing to the right layer, size and contradiction checks, confirmed approaches, `rules_audit.py` (+ self-test), `references/research.md`.
 
