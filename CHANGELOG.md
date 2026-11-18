@@ -1,4 +1,7 @@
 # Changelog
+## 0.6.2
+- app-design-studio: critique no longer fails on placeholder values (user correction); new lessons (shared chrome drift, edit side effects, pin mapping); prompt_lint false positives fixed ("phone 1080x2400" as content, "thumbnails").
+
 ## 0.6.1
 - app-design-studio: self-critique loop (`references/critique-template.md`): every render is critiqued for usability (pass/fail with evidence) and aesthetics (rubric), then fixed by edit pass or rejected and regenerated automatically, with reasons logged. Lessons added from the portal run: wrong interaction model (form instead of canvas), pin/number mapping, edit side effects, distinctiveness.
 

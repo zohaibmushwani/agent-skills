@@ -12,8 +12,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from _common import Report, load_json  # noqa: E402
 
-WEB_BAD = [r"portrait", r"\bphone\b", r"status bar", r"9:19", r"9:16", r"android (status|nav|ui|screen|app screen)", r"\bios (status|nav|ui|screen)", r"iphone (frame|screen|status)",
-           r"bottom nav", r"thumb", r"app screen", r"mobile app"]
+WEB_BAD = [r"portrait", r"\bphone (screen|frame|layout|view|app|ui|mockup)", r"(on|for) (a |the )?phones?\b", r"\bphone-", r"status bar", r"9:19", r"9:16", r"android (status|nav|ui|screen|app screen)", r"\bios (status|nav|ui|screen)", r"iphone (frame|screen|status)",
+           r"bottom nav", r"thumb[- ]zone", r"app screen", r"mobile app"]
 MOBILE_BAD = [r"browser (window|chrome)", r"landscape desktop", r"1440", r"\bhero section\b", r"address bar"]
 NEG = re.compile(r"\b(no|not|without|never|don't|do not add|avoid)\b[^.\n]{0,60}$", re.I)
 

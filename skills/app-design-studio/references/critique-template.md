@@ -8,7 +8,8 @@ Job of this screen: <one sentence>   Key interaction: <what the user does>
 Usability (pass/fail + evidence):
 - Key interaction obvious in 3 seconds?  - One primary action?  - Numbered pins/badges/counts map to the right items?
 - Nothing cropped, nothing covered that must stay visible?  - Text >= 13px, no pale grey?  - Same nav/header as siblings?
-- No faces, correct dates, labels match the earlier screens?
+- No faces, plausible dates, labels and structure match the earlier screens?
+- NOT a defect: invented placeholder VALUES (prices, names, numbers, dates, versions) that differ between screens of a mock. Only check counts that must agree structurally on one screen (title count vs chips, badge vs list) and labels/roles that name the same thing.
 Aesthetics (1-5, one line of evidence each): hierarchy, rhythm, typography, colour, imagery/icons, distinctiveness, consistency, delight -> average
 Verdict: ACCEPT | FIX (edit pass, name the exact change) | REJECT (regenerate; say what the new prompt changes)
 Lesson for next project: <one line, or "none">
