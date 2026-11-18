@@ -1,4 +1,7 @@
 # Changelog
+## 0.8.0
+- app-design-studio: `references/interaction-and-density.md` (word/density budget, one idea per panel, progressive disclosure, visible interaction state, review questions; distilled from public UX rule lists incl. MIT-licensed UI UX Pro Max, with a warning not to take keyword-matched style/pattern picks from such databases). Critique template now fails text-heavy or crowded screens. New generic lessons: density target in the brief, explicit state words, vendor logos.
+
 ## 0.7.0
 - app-design-studio: lessons generalised. design-craft "Learned lessons" rewritten at the level of model behaviour and prompt technique (no product names, palettes, layouts or project evidence); bias guard added (examples are illustrations, never content); web prompt examples turned into placeholders; project-specific evidence stays in each project's prompt log.
 

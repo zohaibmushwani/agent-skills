@@ -57,7 +57,7 @@ Work in the user's project folder under `design/<app-slug>/` (layout: `reference
 Floors depend on target: mobile = dp/sp numbers below; web = px floors in `references/web-design.md` section 3 (44px hit area, body >= 16px, 65ch lines, no horizontal scroll at 390). Treat usability as a floor and aesthetics as the ceiling. Floor numbers are non-negotiable because they are measurable: touch targets >= 48dp (44pt iOS), body text >= 16sp and nothing under 12sp, contrast 4.5:1 (3:1 large text and icons), one primary action per screen, key actions in the lower thumb zone, 4/8 spacing grid. Above the floor, spend personality: a distinctive type pairing, a controlled accent, one memorable illustration or image moment per flow, generous spacing. When they conflict (e.g. a pale-grey elegant label), usability wins and you recover the elegance elsewhere (weight, spacing, size contrast), not by lowering the floor.
 
 ## Avoid ("AI tells")
-Read `references/design-craft.md` and `references/ai-tells-avoid.md` before writing the first prompt. The short version: purple-blue gradients, glass cards for no reason, box-in-box nesting, fake chart spam, twelve-widget homes, generic icon-pack mixes, tiny decorative labels, lorem ipsum, cloned screens with small edits.
+Read `references/design-craft.md`, `references/interaction-and-density.md` and `references/ai-tells-avoid.md` before writing the first prompt (briefs state the density target: few words, generous space, one primary action). The short version: purple-blue gradients, glass cards for no reason, box-in-box nesting, fake chart spam, twelve-widget homes, generic icon-pack mixes, tiny decorative labels, lorem ipsum, cloned screens with small edits.
 
 ## Reference map
 - `references/screen-taxonomy.md` - what screens/states/dialogs/sheets exist and when (MOBILE target only).
@@ -71,6 +71,7 @@ Read `references/design-craft.md` and `references/ai-tells-avoid.md` before writ
 - `references/repo-layout.md` - folder layout and JSON schemas.
 - `references/image-qa-loop.md` - the per-image verify/edit loop, optional HTML truth layer, strings.json.
 - `references/store-asset-specs.md` - Play/App Store sizes and rules (re-check official pages before submitting).
+- `references/interaction-and-density.md` - word/density budget, progressive disclosure, visible interaction state, review questions (use in every brief and critique).
 - `references/critique-template.md` - the per-image self-critique and fix loop.
 - `scripts/prompt_log.py` - verdict log + learnings summary (see S7).
 - `assets/` - example `tokens.json`, `inventory.json`, `spec.json`, `DESIGN.md` skeleton.
