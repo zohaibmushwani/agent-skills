@@ -3,7 +3,7 @@
 
 Usage: spec_audit.py <design-dir> [--strict]
   design-dir contains tokens.json and screens/, states/, dialogs/, sheets/ with *.spec.json
-Thresholds: touch >= tokens.touch_target (default 48), body text >= 12 (WARN < 14 for non-caption text types
+Thresholds: touch >= tokens.touch_target (default 48 mobile, 44 web), body text >= 12 (WARN < 14 for non-caption text types
 marked 'body'), contrast 4.5 (3.0 if font >= 18 or element type is icon).
 """
 import sys
@@ -22,8 +22,12 @@ def audit_spec(path, tokens, strict):
     sid = spec.get("id", Path(path).stem)
     mode = spec.get("mode", "light")
     palette = tokens.get("color", {}).get(mode, {})
-    touch_min = tokens.get("touch_target", 48)
-    height = (spec.get("size") or [0, 0])[1]
+    size = spec.get("size") or [0, 0]
+    web = spec.get("platform") == "web" or tokens.get("platform") == "web"
+    touch_min = tokens.get("touch_target", 44 if web else 48)
+    height = size[1]
+    # thumb-zone rule only makes sense on a phone-sized viewport (web desktop has no thumb zone)
+    thumb = not web or size[0] < 600
     primaries = 0
 
     for el in spec.get("elements", []):
@@ -38,12 +42,12 @@ def audit_spec(path, tokens, strict):
             if el.get("primary"):
                 primaries += 1
                 y = el.get("y")
-                if height and y is not None and y < height * 0.55 and el.get("frequent", True):
+                if thumb and height and y is not None and y < height * 0.55 and el.get("frequent", True):
                     rep_rows.append(("WARN", f"{tag} primary action at y={y} is above the lower thumb zone"))
         font = el.get("font", 0) or 0
         if font and font < MIN_FONT:
             rep_rows.append(("FAIL", f"{tag} font {font}sp < {MIN_FONT}sp"))
-        elif font and el.get("type") == "body" and font < BODY_FONT:
+        elif font and el.get("type") == "body" and font < (16 if web else BODY_FONT):
             rep_rows.append(("WARN", f"{tag} body font {font}sp < {BODY_FONT}sp"))
         fg, bg = el.get("fg"), el.get("bg")
         if fg and bg:

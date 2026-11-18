@@ -36,3 +36,6 @@ Why: image models fall to the statistical average. Naming the defaults is how yo
 
 ## Prefer
 Distinct type pairing, one accent used sparingly, generous whitespace, one considered image/illustration moment per flow, real-sounding data (names, prices, dates), empty states with personality, consistent iconography.
+
+## Web
+See `web-design.md` section 7 (gradient-blob hero, identical 3-icon cards, fake logo walls, glass nav, KPI tile walls). Phone-shaped layouts on desktop (one narrow column floating in a wide canvas) are also a tell.

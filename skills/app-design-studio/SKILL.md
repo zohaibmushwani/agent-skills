@@ -1,6 +1,6 @@
 ---
 name: app-design-studio
-description: Turn an app name or idea into a complete, portrait, high-fidelity mobile UI design repository - every screen (splash, language, onboarding, auth, home, feature screens, details, settings), every state (loading, empty, error, offline, permission), dialogs, bottom sheets, components and interactions - with a locked design system and measurable usability gates. Use whenever the user gives an app name/idea and wants screens, UI design, a design repo, mockups, a screen inventory, or a design to hand to developers/designers, even if they never say "skill" or "Figma". Also use to audit or fix an existing set of generated app screens for usability (contrast, touch targets, states) while keeping them beautiful.
+description: Turn an app name, website idea or web-app idea into a complete high-fidelity UI design repository (mobile app screens, responsive website pages, or web-app/portal screens) - every screen (splash, language, onboarding, auth, home, feature screens, details, settings), every state (loading, empty, error, offline, permission), dialogs, bottom sheets, components and interactions - with a locked design system and measurable usability gates. Use whenever the user gives an app name/idea and wants screens, UI design, a design repo, mockups, a screen inventory, or a design to hand to developers/designers, even if they never say "skill" or "Figma". Targets: mobile app (portrait), website/landing/store (desktop + mobile), web app/portal/dashboard. Also use to audit or fix an existing set of generated app screens for usability (contrast, touch targets, states) while keeping them beautiful.
 ---
 
 # app-design-studio
@@ -9,8 +9,14 @@ Goal: from one app name, produce a design repository that is **beautiful and usa
 
 Why this skill exists: image models draw attractive single screens but drift between screens, forget states, and quietly break usability (tiny text, low contrast, small tap targets). Fix: lock a design system first, generate from it, then check what can be measured with scripts and what cannot (taste) with a rubric plus a human pick.
 
+## Target (decide at S0, default `mobile`)
+- `mobile`: portrait app screens (the default rules below).
+- `web`: website or web app. Read `references/web-design.md` and `references/prompt-templates/web.md` first; they replace "portrait only" with desktop 1440 + mobile 390 views per page (mobile primary when the user says phones are the main device), px floors, web page taxonomy, PNG designs from the image model by default (no HTML unless the user asks; `--viewports` rendering is the optional HTML route). Set `"platform":"web"` in `inventory.json`.
+- `both`: a website/web app plus its companion mobile app; one shared bible and tokens.
+Ask which kind of web it is (marketing `site` vs work-tool `web-app`) if it is not obvious; they need different layouts.
+
 ## Output rules (always)
-- Portrait mobile screens only. **No device frame, no phone mockup, no extra background, no canvas around the screen** - the image is the UI itself, edge to edge. (Frames are added later only if the user asks for presentation boards.)
+- Mobile target: portrait screens only. Web target: desktop + mobile pages, same rule - the image is the page itself. **No device frame, no phone/laptop mockup, no browser chrome, no extra background, no canvas around the screen**, edge to edge. (Frames are added later only if the user asks for presentation boards.)
 - High fidelity: real copy, real icons, real imagery. No lorem ipsum, no placeholder brand names.
 - One design system across the whole set. Never invent a new style per screen.
 - State before layout: in every prompt write the facts first (exact strings, counts, selected tab, numbers that must agree), then the layout, then explicit negatives. Models fail on consistency far more than on beauty.
@@ -23,9 +29,9 @@ Work in the user's project folder under `design/<app-slug>/` (layout: `reference
 
 **S0 Intake.** App name, one-line purpose, audience, platform (default: Android + iOS neutral, Material 3 leaning), tone words, light/dark (default: light + dark tokens, screens in light). Write `BRIEF.md` (problem, audience, scope, non-goals); if the user is unavailable, state the reading you took at the top instead of waiting. Read `references/aesthetic-vs-usability.md` once.
 
-**S1 Screen inventory.** Build `inventory.json` from `references/screen-taxonomy.md`: fixed core (splash, language, onboarding, permissions, auth, home, settings) + feature screens specific to this app + details + states + dialogs + sheets + components. Each item has id, group, purpose, states, priority. Show the user a compact list; confirm before spending image credits.
+**S1 Screen inventory.** Build `inventory.json` from `references/screen-taxonomy.md` (web: `references/web-design.md` section 4): fixed core (splash, language, onboarding, permissions, auth, home, settings) + feature screens specific to this app + details + states + dialogs + sheets + components. Each item has id, group, purpose, states, priority. Show the user a compact list; confirm before spending image credits.
 
-**S2 Design bible + 3 directions (human gate).** Write the bible (`references/design-bible-template.md`) as three short alternatives (different mood, palette logic, type, shape language). Each bible names the text colour on every filled colour (on-primary, on-accent, badge text) and the platform's status bar (Android: time left, icons right; iOS: 9:41 style). Before rendering, put each direction's palette in a small tokens file and run `scripts/contrast_check.py` on it: a direction that only looks good with failing contrast must not reach the human pick. Write each prompt to `prompts/<id>.<direction>.md` first and send exactly that file's text (the saved prompt is the reproducible one). Render one hero screen per direction. **Stop and let the user pick** - taste is the one thing scripts cannot judge, so this is where the human decides. Record the choice in `DESIGN.md`.
+**S2 Design bible + 3 directions (human gate).** Write the bible (`references/design-bible-template.md`) as three short alternatives (different mood, palette logic, type, shape language). Each bible names the text colour on every filled colour (on-primary, on-accent, badge text) and the platform's status bar (Android: time left, icons right; iOS: 9:41 style). Before rendering, put each direction's palette in a small tokens file and run `scripts/contrast_check.py` on it: a direction that only looks good with failing contrast must not reach the human pick. Write each prompt to `prompts/<id>.<direction>.md` first and send exactly that file's text (the saved prompt is the reproducible one). Render one hero screen per direction (web: the same page, desktop and mobile). Batch all three in one Codex call. **Stop and let the user pick** - taste is the one thing scripts cannot judge, so this is where the human decides. Record the choice in `DESIGN.md`.
 
 **S3 Tokens.** From the chosen direction write `tokens.json` (colors light/dark, type scale, spacing 4/8 grid, radius, elevation, icon size, touch target). Run `scripts/contrast_check.py tokens.json` and fix failing pairs now - cheaper than fixing 40 screens later.
 
@@ -42,13 +48,15 @@ Work in the user's project folder under `design/<app-slug>/` (layout: `reference
 **S9 Human review.** Present the contact sheet and the gate report. Anything generated before the real app exists is labelled `concept` (never present concept store graphics as real captures).
 
 ## Judgement guide (aesthetic vs usability)
-Treat usability as a floor and aesthetics as the ceiling. Floor numbers are non-negotiable because they are measurable: touch targets >= 48dp (44pt iOS), body text >= 16sp and nothing under 12sp, contrast 4.5:1 (3:1 large text and icons), one primary action per screen, key actions in the lower thumb zone, 4/8 spacing grid. Above the floor, spend personality: a distinctive type pairing, a controlled accent, one memorable illustration or image moment per flow, generous spacing. When they conflict (e.g. a pale-grey elegant label), usability wins and you recover the elegance elsewhere (weight, spacing, size contrast), not by lowering the floor.
+Web uses px floors from `references/web-design.md` (44px hit area, body >= 16px, 65ch lines, no horizontal scroll at 390). Treat usability as a floor and aesthetics as the ceiling. Floor numbers are non-negotiable because they are measurable: touch targets >= 48dp (44pt iOS), body text >= 16sp and nothing under 12sp, contrast 4.5:1 (3:1 large text and icons), one primary action per screen, key actions in the lower thumb zone, 4/8 spacing grid. Above the floor, spend personality: a distinctive type pairing, a controlled accent, one memorable illustration or image moment per flow, generous spacing. When they conflict (e.g. a pale-grey elegant label), usability wins and you recover the elegance elsewhere (weight, spacing, size contrast), not by lowering the floor.
 
 ## Avoid ("AI tells")
 Read `references/ai-tells-avoid.md` before writing the first prompt. The short version: purple-blue gradients, glass cards for no reason, box-in-box nesting, fake chart spam, twelve-widget homes, generic icon-pack mixes, tiny decorative labels, lorem ipsum, cloned screens with small edits.
 
 ## Reference map
-- `references/screen-taxonomy.md` - what screens/states/dialogs/sheets exist and when.
+- `references/screen-taxonomy.md` - what screens/states/dialogs/sheets exist and when (mobile).
+- `references/web-design.md` - website / web-app target: viewports, px floors, page taxonomy, layout, web AI tells.
+- `references/prompt-templates/web.md` - web FORMAT/CONTENT blocks and per page-type prompts.
 - `references/aesthetic-vs-usability.md` - dials, floors, rubric, regenerate rules.
 - `references/design-bible-template.md` - the block repeated in every prompt.
 - `references/prompt-templates/` - per screen type prompts.

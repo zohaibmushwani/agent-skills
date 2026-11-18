@@ -26,3 +26,12 @@ Render one hero screen each (usually home) and present side by side. Wait for th
 
 ## Locking
 After the pick: copy the chosen bible to `DESIGN.md`, derive `tokens.json`, and never edit the bible mid-set. If something must change, change the token, regenerate affected screens, note it in `STATUS.md`.
+
+## Web variant (replace platform/spacing/nav lines)
+```
+Platform feel: website|web-app; desktop 1440 + mobile 390; page only, no browser chrome, no mockup.
+Grid: 12-col max 1200 gutter 24 (desktop), 4-col margin 20 (mobile). Section padding 80/48.
+Type: display 56/40, h1 40/30, h2 28/22, body 18/16 (>=16), caption 12; line length <= 65ch.
+Navigation: header logo + <=5 links + one CTA; mobile drawer. (web-app: sidebar -> bottom bar)
+Hit areas >= 44px; focus ring colour <hex> (3:1); no status bar line.
+```

@@ -1,4 +1,7 @@
 # Changelog
+## 0.5.0
+- app-design-studio: website and web-app target (desktop 1440 + mobile 390 pages, px floors, web page taxonomy, web prompt templates, Codex PNG route by default); spec_audit/state_coverage understand `platform: web` and per-view files; render_screens.mjs gains optional `--viewports` and `--full-page`.
+
 ## 0.4.0
 - Added store-screenshots (Codex-rendered, real UI as reference, build_prompts.py, fit_store.py, check_set.py).
 - app-design-studio: contrast check and on-colour text before S2, platform status bar, save-then-send prompts, Codex image-quota preflight.

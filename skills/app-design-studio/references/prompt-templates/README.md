@@ -1,5 +1,7 @@
 # Prompt templates
 
+Website or web-app target: use `web.md` in this folder for the FORMAT block and page templates; the block order below stays.
+
 Every image prompt has the same 6 blocks in this order. Order matters: the model weights the start most, and the bible must not be diluted.
 
 ```

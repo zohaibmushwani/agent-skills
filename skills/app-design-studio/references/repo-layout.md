@@ -62,3 +62,8 @@ Optional `"states_na": "<reason>"` exempts a data-group screen that genuinely ha
 ```
 `fg`/`bg` are token names (preferred) or hex. `y` and `size` let the audit check the thumb zone. `interactive.w/h` are the **hit area**, not the glyph.
 Keep specs honest: derive them from what you actually put in the prompt/HTML, and correct them after looking at the image.
+
+## Web target additions
+- `inventory.json`: top-level `"platform":"web"`, `"viewports":{"desktop":[1440,900],"mobile":[390,844]}`; each item `"views":["desktop","mobile"]` (and optional `"data":true` for list/dashboard pages). Image stems: `<id>@<view>`, states `<id>.<state>@<view>`.
+- `<id>@<view>.spec.json`: same schema plus `"platform":"web"`, `"view":"desktop"`, `size` = viewport; hit areas in px, `font` in px. `tokens.json` may set `"platform":"web"` and `"touch_target":44`.
+- Folders: `screens/{home,apps,requests,...}` by page group; long pages are one tall PNG per view.

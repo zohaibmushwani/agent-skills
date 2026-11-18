@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 /**
- * Render HTML screens to portrait PNGs and extract a measured <id>.spec.json from the real DOM.
+ * Render HTML screens/pages to PNGs and extract a measured <id>.spec.json from the real DOM.
  *
- * Usage: node render_screens.mjs <design-dir> [--w 412] [--h 892] [--scale 2]
+ * Usage (mobile app, default): node render_screens.mjs <design-dir> [--w 412] [--h 892] [--scale 2]
+ * Usage (website / web app):   node render_screens.mjs <design-dir> --viewports desktop=1440x900,mobile=390x844 [--full-page] [--scale 1]
  *   Input : <design-dir>/html/<group>/<id>.html     (ids like home-01 or home-01.empty)
  *   Output: <design-dir>/screens/<group>/<id>.png and <id>.spec.json
+ *           with --viewports: <id>@<view>.png and <id>@<view>.spec.json (one per viewport, platform "web");
+ *           --full-page captures the whole scroll height (long landing pages); spec size is the viewport.
  * Env: PLAYWRIGHT_MODULE (path to playwright's index.mjs/js if not installed locally), CHROME_PATH (chromium exe).
  *
  * What is measured (so audits judge the real thing, not the prompt):
@@ -20,11 +23,16 @@ const args = process.argv.slice(2);
 const root = path.resolve(args[0] || '.');
 const opt = (k, d) => (args.includes(k) ? Number(args[args.indexOf(k) + 1]) : d);
 const W = opt('--w', 412), H = opt('--h', 892), SCALE = opt('--scale', 2);
+const strOpt = (k) => (args.includes(k) ? args[args.indexOf(k) + 1] : null);
+const FULL = args.includes('--full-page');
+// --viewports name=WxH,name=WxH  -> web mode; otherwise single mobile viewport (legacy behaviour)
+const VIEWS = strOpt('--viewports')
+  ? strOpt('--viewports').split(',').map(v => { const [name, wh] = v.split('='); const [w, h] = wh.split('x').map(Number); return { name, w, h }; })
+  : [{ name: null, w: W, h: H }];
 
 const pw = await import(process.env.PLAYWRIGHT_MODULE ? pathToFileURL(process.env.PLAYWRIGHT_MODULE).href : 'playwright');
 const chromium = pw.chromium || pw.default.chromium;
 const browser = await chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
-const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: SCALE });
 
 function walk(dir) {
   return fs.existsSync(dir) ? fs.readdirSync(dir, { withFileTypes: true }).flatMap(e =>
@@ -90,21 +98,27 @@ const extract = () => {
 const files = walk(path.join(root, 'html')).sort();
 if (!files.length) { console.error(`no html files under ${path.join(root, 'html')}`); process.exit(2); }
 let n = 0;
-for (const f of files) {
-  const rel = path.relative(path.join(root, 'html'), f);
-  const group = path.dirname(rel) === '.' ? 'misc' : path.dirname(rel);
-  const id = path.basename(f, '.html');
-  const outDir = path.join(root, 'screens', group);
-  fs.mkdirSync(outDir, { recursive: true });
-  await page.goto(pathToFileURL(f).href, { waitUntil: 'load' });
-  await page.evaluate(() => document.fonts && document.fonts.ready);
-  await page.screenshot({ path: path.join(outDir, `${id}.png`) });
-  const m = await page.evaluate(extract);
-  const spec = { id, title: id, group, mode: 'light', size: [W, H], primary_actions: m.primaries,
-    overflowX: m.overflowX, elements: m.elements, generated_by: 'render_screens.mjs (measured from DOM)' };
-  fs.writeFileSync(path.join(outDir, `${id}.spec.json`), JSON.stringify(spec, null, 1));
-  n++;
-  console.log(`rendered ${group}/${id}  (${m.elements.length} elements${m.overflowX ? ', HORIZONTAL OVERFLOW' : ''})`);
+for (const view of VIEWS) {
+  const page = await browser.newPage({ viewport: { width: view.w, height: view.h }, deviceScaleFactor: SCALE });
+  for (const f of files) {
+    const rel = path.relative(path.join(root, 'html'), f);
+    const group = path.dirname(rel) === '.' ? 'misc' : path.dirname(rel);
+    const base = path.basename(f, '.html');
+    const stem = view.name ? `${base}@${view.name}` : base;
+    const outDir = path.join(root, 'screens', group);
+    fs.mkdirSync(outDir, { recursive: true });
+    await page.goto(pathToFileURL(f).href, { waitUntil: 'load' });
+    await page.evaluate(() => document.fonts && document.fonts.ready);
+    await page.screenshot({ path: path.join(outDir, `${stem}.png`), fullPage: FULL });
+    const m = await page.evaluate(extract);
+    const spec = { id: stem, title: base, group, mode: 'light', size: [view.w, view.h], primary_actions: m.primaries,
+      platform: view.name ? 'web' : 'mobile', view: view.name || undefined,
+      overflowX: m.overflowX, elements: m.elements, generated_by: 'render_screens.mjs (measured from DOM)' };
+    fs.writeFileSync(path.join(outDir, `${stem}.spec.json`), JSON.stringify(spec, null, 1));
+    n++;
+    console.log(`rendered ${group}/${stem}  (${m.elements.length} elements${m.overflowX ? ', HORIZONTAL OVERFLOW' : ''})`);
+  }
+  await page.close();
 }
 await browser.close();
-console.log(`done: ${n} screens`);
+console.log(`done: ${n} renders`);

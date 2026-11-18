@@ -1,4 +1,6 @@
-# Screen taxonomy
+# Screen taxonomy (mobile app)
+
+For websites and web apps use `web-design.md` section 4 instead.
 
 Build the inventory from this list. Drop what the app doesn't need, add app-specific features. Give every item an id like `onb-02`, a group, a purpose, and the states it needs.
 
