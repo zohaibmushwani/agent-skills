@@ -46,7 +46,7 @@ Work in the user's project folder under `design/<app-slug>/` (layout: `reference
 
 **S6 States, dialogs, sheets.** Same prompts, same bible. Empty states guide the next action; error is visually different from empty; loading uses skeletons that match the real layout.
 
-**S7 Gates and regenerate.** Run `python scripts/run_gates.py design/<app-slug>`. It runs contrast, token lint, element audit (touch targets, min text size), and state coverage, and writes `reports/gates.md`. Then score each screen with the rubric in `references/aesthetic-vs-usability.md` (open the PNG and look - do not score from memory). Regenerate failing screens, max 2 attempts each; if still failing, flag it for the user rather than looping.
+**S7 Gates, verdicts and the prompt log.** After looking at EVERY generated image write a verdict (accept / fix / reject) and log it: `python scripts/prompt_log.py add <design-dir> --id ... --image ... --prompt ... --mode brief|locked|edit --verdict ... --tags ... --reason ...`; rejected images move to `rejected/`. `prompt_log.py summary` shows accept rate per prompt mode and recurring failure tags; any tag rejected twice becomes a line in `references/design-craft.md` "Learned lessons" (that is how the skill improves). Then Run `python scripts/run_gates.py design/<app-slug>`. It runs contrast, token lint, element audit (touch targets, min text size), and state coverage, and writes `reports/gates.md`. Then score each screen with the rubric in `references/aesthetic-vs-usability.md` (open the PNG and look - do not score from memory). Regenerate failing screens, max 2 attempts each; if still failing, flag it for the user rather than looping.
 
 **S8 Export.** Assemble the repo (`references/repo-layout.md`): PNGs, specs, tokens, DESIGN.md, inventory, flow map, `copy/strings.json`, reports. Optional extras, only when the user wants them: (a) HTML truth layer for exact CSS values (`references/image-qa-loop.md`), (b) store assets - icon, feature graphic, store screenshots with headlines rendered as HTML text, validated by `scripts/validate_assets.py` against `references/store-asset-specs.md`. For marketing store screenshots (headline-led sets like top-chart apps) use the `store-screenshots` skill with these screens as input. Optional handoff: tokens/specs feed the Compose code + Figma bridge; say so in `HANDOFF.md`.
 
@@ -70,5 +70,6 @@ Read `references/design-craft.md` and `references/ai-tells-avoid.md` before writ
 - `references/repo-layout.md` - folder layout and JSON schemas.
 - `references/image-qa-loop.md` - the per-image verify/edit loop, optional HTML truth layer, strings.json.
 - `references/store-asset-specs.md` - Play/App Store sizes and rules (re-check official pages before submitting).
+- `scripts/prompt_log.py` - verdict log + learnings summary (see S7).
 - `assets/` - example `tokens.json`, `inventory.json`, `spec.json`, `DESIGN.md` skeleton.
 - `scripts/` - deterministic gates (Python 3 stdlib only): contrast_check, token_lint, spec_audit, state_coverage, validate_assets, run_gates.

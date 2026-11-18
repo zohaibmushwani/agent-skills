@@ -1,4 +1,7 @@
 # Changelog
+## 0.6.0
+- app-design-studio: prompt-log system. `scripts/prompt_log.py add|summary` records every accept/fix/reject with prompt, mode, tags and reason, and summarises accept rate per prompt mode and recurring failure tags (a tag rejected twice is promoted into `references/design-craft.md` "Learned lessons", seeded with 9 lessons from a real portal run). SKILL.md S7 now requires a verdict + log entry for every generated image.
+
 ## 0.5.2
 - app-design-studio: new `references/design-craft.md` (brief vs locked prompt modes, 10-line design plan with self-review, calibrated generic-defaults list, boldness in one place, copy rules, critique loop; ideas from Anthropic's frontend-design skill, written in our own words). Verified by an A/B run: a 130-word brief gave a richer screen than a 450-word locked prompt; landscape desktop web prompts now come out landscape.
 - prompt_lint no longer flags a product domain like "Android app studio"; Codex notes: always `codex exec ... < /dev/null`, no aspect in the wrapper, put `-i` after the prompt.

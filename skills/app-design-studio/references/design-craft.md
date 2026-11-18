@@ -41,3 +41,14 @@ Outlines, dividers, labels, numbering and chips must encode something about the 
 
 ## 7. Critique loop (every render)
 Open the image. Check: hierarchy in 2 seconds, one primary action, every string readable at its size, same nav/header as siblings. Write one corrective sentence for the single biggest problem and edit with that sentence only.
+
+## 8. Learned lessons (from the prompt log; add a line when a failure tag repeats)
+- **Faces:** models draw stock-photo faces for owners/avatars. Say "people appear only as initials in circles, never photos or faces" in every web-app prompt. (rejected twice: portal 01, ChatGPT dashboard)
+- **Cropping:** dense desktop pages come back cut at the edges. Say "the whole layout fits inside the frame with a margin; nothing is cropped at any edge"; fix with an edit pass, not a reroll. (portal 03 v1)
+- **Stale dates:** models default to the wrong year. State the month/year in the prompt. (portal 01)
+- **Generic dashboards:** mascot hero, emoji greeting, KPI tile row, promo banners, identical rounded cards appear whenever the prompt says "dashboard" without a job. Name the job and the facts instead. (ChatGPT home)
+- **Numbering:** 01/02/03 markers appear on lists that are not sequences; add "use numbering only where the content is a sequence". (portal 02)
+- **Over-constraining:** a 450-word locked first prompt gave a flatter screen than a 130-word brief. Brief first, lock later.
+- **Missing core:** if the prompt does not name the product's key interaction (original text vs understanding, open questions, owners and status), the model builds a generic dashboard around it. Put the key interaction first.
+- **Edit side effects:** an edit pass may add an outer rounded border/shadow; say "no outer border" in the edit instruction.
+- **Small, pale meta text:** IDs, counts and secondary labels come out around 12px and grey (seen in 3 of 5 rejected/fix runs). Add "smallest text is 13px, secondary text clearly readable, nothing pale grey on white" to web prompts and check it in the critique loop.

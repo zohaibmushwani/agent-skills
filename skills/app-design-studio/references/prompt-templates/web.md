@@ -40,3 +40,5 @@ Sticky bottom/right action: ONE primary button "<<label>>".
 - **Always run `codex exec ... < /dev/null`.** Without it, a backgrounded or piped run prints "Reading additional input from stdin..." and waits forever (the real cause of 10+ minute hangs; with it, one image takes about 1-2 minutes).
 - `codex exec "prompt" -i ref.png < /dev/null`: put the prompt BEFORE `-i` (the flag swallows following arguments as files).
 - Codex can hang with no output; list processes (`ps -eo pid,etime,command | grep vendor/aarch64`), kill only your own stale `codex exec` runs, and rerun. macOS has no `timeout` command.
+- **Dense desktop pages can come back cropped** (top bar, logo or a button cut at the frame edge). Add to dense web prompts: "the whole layout fits inside the frame with a margin; nothing is cropped at any edge". If it still crops, fix with an edit pass naming only that change.
+- Edit passes can add a rounded outer border/shadow to the page; add "no outer border, no rounded frame, no shadow around the page" to the edit instruction.
