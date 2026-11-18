@@ -3,10 +3,10 @@
 Same 6 blocks as README.md (FORMAT, BIBLE, SCREEN, CONTENT, CONSISTENCY, DO NOT ADD); only FORMAT and CONTENT patterns change.
 
 ## FORMAT block
-- Desktop: `Website page, desktop 16:10 (1440x900 viewport). Show ONLY the page UI, edge to edge. No browser window, no address bar, no laptop mockup, no outer background, no shadow.`
-- Desktop long page: `Full-length landing page, desktop 1440 wide, tall single image, sections top to bottom as listed.` (for >3 sections split into 2-3 images of the same width)
-- Mobile: `Website page, mobile 9:19.5 (390x844). Show ONLY the page UI, full-bleed. No phone frame, no browser chrome, no outer background.`
-- Web app on a phone: same as mobile; status bar line optional (omit it for a mobile *website*, keep it for an installed/PWA look).
+- Desktop (primary): `Website page, landscape desktop 16:10 (1440x900 viewport). Show ONLY the page UI, edge to edge. No browser window, no address bar, no laptop mockup, no outer background, no shadow.`
+- Desktop long page: `Full-length website page, 1440 wide, one tall image, sections top to bottom as listed.` (for more than 3 sections split into 2-3 images of the same width)
+- Narrow layout: `Narrow responsive layout of the same website page, 390px wide, one tall image as long as the content needs. Header shows logo and a menu button. No browser chrome, no device frame, no outer background.`
+- Mobile-first work tool only (`"mobile_first": true`): the narrow layout is the main set; bottom bar and sticky action are allowed and the lint allows narrow-device wording.
 
 ## CONTENT block pattern (site home)
 ```
@@ -17,7 +17,7 @@ Section 3 ... Final CTA band: headline + ONE button. Footer: 3 link columns, leg
 ```
 ## CONTENT block pattern (web-app page)
 ```
-Left sidebar (desktop) / bottom bar (mobile): exactly 4 items - Inbox (selected), Requests, Library, Me.
+Left sidebar (desktop) / drawer or bottom bar (narrow layout, mobile-first only): exactly 4 items - Inbox (selected), Requests, Library, Me.
 Page title + status chips (exact strings). Tabs: exactly 4 - ... Main content: cards/rows with exact count and exact strings.
 Sticky bottom/right action: ONE primary button "<<label>>".
 ```

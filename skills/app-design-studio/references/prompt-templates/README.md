@@ -1,11 +1,11 @@
 # Prompt templates
 
-Website or web-app target: use `web.md` in this folder for the FORMAT block and page templates; the block order below stays.
+**Pick your profile first.** Mobile app target: use this file. Website / web-app target: use `web.md` in this folder instead of the mobile FORMAT, CONTENT and per-screen lists below (only the block order is shared); do not copy mobile wording into a web prompt (`scripts/prompt_lint.py` checks).
 
 Every image prompt has the same 6 blocks in this order. Order matters: the model weights the start most, and the bible must not be diluted.
 
 ```
-1. FORMAT      Portrait mobile app screen, 9:19.5. Show ONLY the app UI, full-bleed. No phone frame, no device mockup, no outer background, no shadow around the screen.
+1. FORMAT      <from the profile>. MOBILE: Portrait mobile app screen, 9:19.5. Show ONLY the app UI, full-bleed. No phone frame, no device mockup, no outer background, no shadow around the screen.
 2. BIBLE       <paste DESIGN BIBLE block>
 3. SCREEN      <id> - <title>. Purpose: <one sentence>. State: <default|loading|empty|error|...>.
 4. CONTENT     Exact text and structure, top to bottom (see below). Exact counts.

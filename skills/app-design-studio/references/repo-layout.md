@@ -10,7 +10,7 @@ design/<app-slug>/
   flow-map.md            screen-to-screen navigation (mermaid ok)
   screens/
     entry/  auth/  home/  feature/  detail/  search/  profile/  settings/  system/
-      <id>.png           portrait UI only, no frame
+      <id>.png           UI only, no frame (mobile: portrait; web: <id>@desktop / <id>@mobile)
       <id>.spec.json     elements + behaviour
   states/                loading/empty/error variants (<screen-id>.<state>.png + spec)
   dialogs/  sheets/

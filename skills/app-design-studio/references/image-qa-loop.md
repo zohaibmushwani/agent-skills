@@ -5,7 +5,7 @@ Why: image models fail on consistency, not beauty - a list with 3 unchecked task
 1. **Open the PNG** (Read tool) - do not rely on the prompt.
 2. Compare with the prompt's STATE block: every string, every count, selected tab/day, numbers that must agree (progress vs list, total vs items).
 3. Check alignment, clipping, overlap, legibility at thumbnail size.
-4. Check icons share one stroke/fill style, nav bar identical to siblings, status bar text identical (9:41).
+4. Check icons share one stroke/fill style, nav bar identical to siblings; mobile target: status bar text identical (9:41); web target: header/sidebar identical, no OS status bar.
 5. Check palette against tokens (eyeball 5 spots; if unsure, sample pixels with Pillow if installed).
 6. Write the result to `qa/<round>.md`: id, pass/fail per item, what to fix.
 7. **Edit, don't reroll:** if one string is wrong, run an image-edit pass naming only that change ("keep everything identical except the title text, which must read 'Library'"). Rerolling resets everything already approved. Max 2 retries, then flag.

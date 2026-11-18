@@ -2,6 +2,7 @@
 
 The bible is written once (S2), refined into tokens (S3), and then **pasted verbatim at the top of every image prompt**. Short and concrete beats poetic. Keep it under ~25 lines so it fits every prompt.
 
+## MOBILE bible block (mobile target only)
 ```
 DESIGN BIBLE - <App name>
 Product: <one line what it does, for whom>
@@ -27,11 +28,11 @@ Render one hero screen each (usually home) and present side by side. Wait for th
 ## Locking
 After the pick: copy the chosen bible to `DESIGN.md`, derive `tokens.json`, and never edit the bible mid-set. If something must change, change the token, regenerate affected screens, note it in `STATUS.md`.
 
-## Web variant (replace platform/spacing/nav lines)
+## WEB bible block (website / web-app target; replaces the mobile block, never mix)
 ```
-Platform feel: website|web-app; desktop 1440 + mobile 390; page only, no browser chrome, no mockup.
+Format: website|web-app; landscape desktop 16:10 (1440 wide) page + narrow responsive layout 390 wide; the page itself only, no browser chrome, no device or laptop mockup, no outer background.
 Grid: 12-col max 1200 gutter 24 (desktop), 4-col margin 20 (mobile). Section padding 80/48.
 Type: display 56/40, h1 40/30, h2 28/22, body 18/16 (>=16), caption 12; line length <= 65ch.
 Navigation: header logo + <=5 links + one CTA; mobile drawer. (web-app: sidebar -> bottom bar)
-Hit areas >= 44px; focus ring colour <hex> (3:1); no status bar line.
+Hit areas >= 44px; focus ring colour <hex> (3:1). No OS status bar, no gesture bar.
 ```

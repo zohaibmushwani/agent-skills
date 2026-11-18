@@ -1,4 +1,7 @@
 # Changelog
+## 0.5.1
+- app-design-studio: target = profile. Mobile wording (portrait, phone, status bar, 9:19.5, bottom nav, dp/sp) moved out of shared rules into mobile-only blocks; website default is landscape desktop 16:10 with a narrow 390px responsive layout (`mobile_first` flag for mobile-first work tools). New keyword-hygiene rule and `scripts/prompt_lint.py` (wired into run_gates) fail prompts that use another target's vocabulary.
+
 ## 0.5.0
 - app-design-studio: website and web-app target (desktop 1440 + mobile 390 pages, px floors, web page taxonomy, web prompt templates, Codex PNG route by default); spec_audit/state_coverage understand `platform: web` and per-view files; render_screens.mjs gains optional `--viewports` and `--full-page`.
 

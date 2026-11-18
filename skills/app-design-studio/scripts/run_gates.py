@@ -24,6 +24,7 @@ def main(argv):
     strict = "--strict" in argv
     steps = [
         ("contrast_check.py", [str(root / "tokens.json")]),
+        ("prompt_lint.py", [str(root)]),
         ("token_lint.py", [str(root)]),
         ("spec_audit.py", [str(root)] + (["--strict"] if strict else [])),
         ("state_coverage.py", [str(root)]),

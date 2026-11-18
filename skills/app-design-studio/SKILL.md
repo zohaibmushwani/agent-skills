@@ -1,6 +1,6 @@
 ---
 name: app-design-studio
-description: Turn an app name, website idea or web-app idea into a complete high-fidelity UI design repository (mobile app screens, responsive website pages, or web-app/portal screens) - every screen (splash, language, onboarding, auth, home, feature screens, details, settings), every state (loading, empty, error, offline, permission), dialogs, bottom sheets, components and interactions - with a locked design system and measurable usability gates. Use whenever the user gives an app name/idea and wants screens, UI design, a design repo, mockups, a screen inventory, or a design to hand to developers/designers, even if they never say "skill" or "Figma". Targets: mobile app (portrait), website/landing/store (desktop + mobile), web app/portal/dashboard. Also use to audit or fix an existing set of generated app screens for usability (contrast, touch targets, states) while keeping them beautiful.
+description: Turn an app name or a website / web-app idea into a complete high-fidelity UI design repository - pages or screens, every state (loading, empty, error, offline), dialogs, sheets, components, interactions - with a locked design system and measurable usability gates. Three targets, each with its own profile and wording - mobile app (portrait screens: splash, onboarding, auth, home, settings), website (landscape desktop pages plus a narrow responsive layout), web app / portal / dashboard. Use whenever the user gives an app name or idea and wants screens, pages, UI design, a design repo, mockups, a screen inventory, or a design to hand to developers/designers, even if they never say "skill" or "Figma". Also use to audit or fix an existing set of generated screens for usability (contrast, targets, states) while keeping them beautiful.
 ---
 
 # app-design-studio
@@ -9,14 +9,19 @@ Goal: from one app name, produce a design repository that is **beautiful and usa
 
 Why this skill exists: image models draw attractive single screens but drift between screens, forget states, and quietly break usability (tiny text, low contrast, small tap targets). Fix: lock a design system first, generate from it, then check what can be measured with scripts and what cannot (taste) with a rubric plus a human pick.
 
-## Target (decide at S0, default `mobile`)
-- `mobile`: portrait app screens (the default rules below).
-- `web`: website or web app. Read `references/web-design.md` and `references/prompt-templates/web.md` first; they replace "portrait only" with desktop 1440 + mobile 390 views per page (mobile primary when the user says phones are the main device), px floors, web page taxonomy, PNG designs from the image model by default (no HTML unless the user asks; `--viewports` rendering is the optional HTML route). Set `"platform":"web"` in `inventory.json`.
-- `both`: a website/web app plus its companion mobile app; one shared bible and tokens.
-Ask which kind of web it is (marketing `site` vs work-tool `web-app`) if it is not obvious; they need different layouts.
+## Target = profile (decide FIRST, at S0; never default silently when the user said website/portal/dashboard)
+| Target | Orientation / sizes | Read these (and ONLY these for target wording) |
+|---|---|---|
+| `mobile` (app) | portrait 9:19.5 screens, one size | `screen-taxonomy.md`, mobile blocks of `design-bible-template.md` and `prompt-templates/README.md`, floors in dp/sp |
+| `web` kind `site` (website, landing, store, blog) | **landscape desktop 16:10 (1440x900)** pages, plus a narrow 390px responsive layout of the same page | `web-design.md`, `prompt-templates/web.md`, web block of `design-bible-template.md`, floors in px |
+| `web` kind `app` (portal, dashboard, admin, SaaS) | landscape desktop first; narrow layout second. Only if the user says phones are the main device, set `"mobile_first": true` and make the narrow layout primary | same as `site` |
+| `both` | one shared bible and tokens, two profiles | both sets, never mixed inside one prompt |
+Set `"platform": "mobile" | "web"` in `inventory.json`. A prompt is written with exactly one profile's vocabulary.
+
+**Keyword hygiene (the reason this section exists):** image models obey the words they are given. A website prompt that says "portrait", "phone", "status bar", "9:19.5", "bottom navigation", "thumb zone", "Android/iOS" or "app screen" comes back as a phone screen. Web prompts say "website page", "landscape desktop 16:10, 1440 wide", "header with links", "sidebar", "browser-less". The narrow layout is called "narrow responsive layout, 390px wide", never "phone screen". `python scripts/prompt_lint.py <design-dir>` fails any prompt in `prompts/` that uses another profile's words; run it before sending a batch.
 
 ## Output rules (always)
-- Mobile target: portrait screens only. Web target: desktop + mobile pages, same rule - the image is the page itself. **No device frame, no phone/laptop mockup, no browser chrome, no extra background, no canvas around the screen**, edge to edge. (Frames are added later only if the user asks for presentation boards.)
+- The image is the UI itself, edge to edge: **no device frame, no phone/laptop mockup, no browser chrome, no extra background, no canvas around it.** (Presentation frames only if the user asks for boards.) Mobile: portrait screens. Web: landscape desktop pages and, where listed, the narrow layout; long pages as a tall single image or 2-3 section images of the same width.
 - High fidelity: real copy, real icons, real imagery. No lorem ipsum, no placeholder brand names.
 - One design system across the whole set. Never invent a new style per screen.
 - State before layout: in every prompt write the facts first (exact strings, counts, selected tab, numbers that must agree), then the layout, then explicit negatives. Models fail on consistency far more than on beauty.
@@ -27,7 +32,7 @@ Ask which kind of web it is (marketing `site` vs work-tool `web-app`) if it is n
 ## Workflow (S0-S9)
 Work in the user's project folder under `design/<app-slug>/` (layout: `references/repo-layout.md`). Track phase status in `design/<app-slug>/STATUS.md`. Ask the user only when the answer changes the result (max 3 questions at S0); otherwise choose a sensible default and say so.
 
-**S0 Intake.** App name, one-line purpose, audience, platform (default: Android + iOS neutral, Material 3 leaning), tone words, light/dark (default: light + dark tokens, screens in light). Write `BRIEF.md` (problem, audience, scope, non-goals); if the user is unavailable, state the reading you took at the top instead of waiting. Read `references/aesthetic-vs-usability.md` once.
+**S0 Intake.** App/site name, one-line purpose, audience, target + kind (table above; ask if the words "website", "portal", "dashboard" or "landing" appear and the target is unclear), platform feel (mobile default: Android + iOS neutral, Material 3 leaning; web: neutral), tone words, light/dark (default: light + dark tokens, screens in light). Write `BRIEF.md` (problem, audience, scope, non-goals); if the user is unavailable, state the reading you took at the top instead of waiting. Read `references/aesthetic-vs-usability.md` once.
 
 **S1 Screen inventory.** Build `inventory.json` from `references/screen-taxonomy.md` (web: `references/web-design.md` section 4): fixed core (splash, language, onboarding, permissions, auth, home, settings) + feature screens specific to this app + details + states + dialogs + sheets + components. Each item has id, group, purpose, states, priority. Show the user a compact list; confirm before spending image credits.
 
@@ -48,13 +53,13 @@ Work in the user's project folder under `design/<app-slug>/` (layout: `reference
 **S9 Human review.** Present the contact sheet and the gate report. Anything generated before the real app exists is labelled `concept` (never present concept store graphics as real captures).
 
 ## Judgement guide (aesthetic vs usability)
-Web uses px floors from `references/web-design.md` (44px hit area, body >= 16px, 65ch lines, no horizontal scroll at 390). Treat usability as a floor and aesthetics as the ceiling. Floor numbers are non-negotiable because they are measurable: touch targets >= 48dp (44pt iOS), body text >= 16sp and nothing under 12sp, contrast 4.5:1 (3:1 large text and icons), one primary action per screen, key actions in the lower thumb zone, 4/8 spacing grid. Above the floor, spend personality: a distinctive type pairing, a controlled accent, one memorable illustration or image moment per flow, generous spacing. When they conflict (e.g. a pale-grey elegant label), usability wins and you recover the elegance elsewhere (weight, spacing, size contrast), not by lowering the floor.
+Floors depend on target: mobile = dp/sp numbers below; web = px floors in `references/web-design.md` section 3 (44px hit area, body >= 16px, 65ch lines, no horizontal scroll at 390). Treat usability as a floor and aesthetics as the ceiling. Floor numbers are non-negotiable because they are measurable: touch targets >= 48dp (44pt iOS), body text >= 16sp and nothing under 12sp, contrast 4.5:1 (3:1 large text and icons), one primary action per screen, key actions in the lower thumb zone, 4/8 spacing grid. Above the floor, spend personality: a distinctive type pairing, a controlled accent, one memorable illustration or image moment per flow, generous spacing. When they conflict (e.g. a pale-grey elegant label), usability wins and you recover the elegance elsewhere (weight, spacing, size contrast), not by lowering the floor.
 
 ## Avoid ("AI tells")
 Read `references/ai-tells-avoid.md` before writing the first prompt. The short version: purple-blue gradients, glass cards for no reason, box-in-box nesting, fake chart spam, twelve-widget homes, generic icon-pack mixes, tiny decorative labels, lorem ipsum, cloned screens with small edits.
 
 ## Reference map
-- `references/screen-taxonomy.md` - what screens/states/dialogs/sheets exist and when (mobile).
+- `references/screen-taxonomy.md` - what screens/states/dialogs/sheets exist and when (MOBILE target only).
 - `references/web-design.md` - website / web-app target: viewports, px floors, page taxonomy, layout, web AI tells.
 - `references/prompt-templates/web.md` - web FORMAT/CONTENT blocks and per page-type prompts.
 - `references/aesthetic-vs-usability.md` - dials, floors, rubric, regenerate rules.

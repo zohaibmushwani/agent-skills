@@ -23,7 +23,7 @@ Why: image models fall to the statistical average. Naming the defaults is how yo
 - Text over busy imagery without a scrim.
 - Shrinking text to fit instead of cutting copy.
 
-## Device/framing
+## Device/framing (mobile target; web prompts must not contain these words)
 - Any device frame, bezel, notch mockup, drop shadow around the screen, or coloured outer background (we want the UI only).
 - Edge crops, inconsistent aspect ratios between screens.
 

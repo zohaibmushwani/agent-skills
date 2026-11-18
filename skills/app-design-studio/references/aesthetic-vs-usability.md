@@ -17,6 +17,7 @@ Scale 1-10. Defaults for a general consumer app; adjust by category.
 Category nudges: fintech/health -> raise trust and calm (Variance down, Clarity 10). Creative/social -> Art direction 8-9. Utility/tools -> Density 5-6, Art 5-6. Kids -> larger targets (56dp), Variance up.
 
 ## 2. The floor (hard gates, scripts check these)
+Mobile target values (dp/sp). Web target: use the px floors in `web-design.md` section 3; thumb-zone, safe-area and gesture-bar rows do not apply to desktop pages.
 | Rule | Value | Why |
 |---|---|---|
 | Touch target | >= 48dp (44pt on iOS); 8dp between adjacent targets | thumbs; WCAG 2.5.8 24px is only the legal minimum |

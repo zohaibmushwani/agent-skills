@@ -15,10 +15,13 @@ Mobile-first work tool (phone is the main device): design 390 first, desktop sec
 
 ## 2. Viewports and output
 - Set `"platform": "web"` and `"viewports"` in `inventory.json`; each item lists `views`.
-- Default pair: desktop 1440x900 and mobile 390x844. Add tablet 834x1112 only if the user needs it. Mobile-first work tools: mobile is the primary set, desktop optional.
+- Default pair: **landscape desktop 1440x900 (16:10) is the primary view**, plus a narrow responsive layout 390 wide (file suffix `@mobile`, but in prompts call it "narrow responsive layout, 390px wide", not "phone screen"). Add tablet 834x1112 only if needed. Only when the user says phones are the main device (`"mobile_first": true` in inventory.json) is the narrow layout primary.
 - Image = the page itself: **no browser chrome, no laptop/phone mockup, no outer background**. Long pages: render the full scroll height as one tall image (HTML route `--full-page`), not a cropped first screen.
 - File names: `<id>@desktop.png`, `<id>@mobile.png`, states `<id>.empty@mobile.png`, plus matching `.spec.json`.
 - **Default route = PNG designs from an image model (Codex image_gen), no HTML.** Write the prompt file, generate, look at the image, fix with edit prompts. Ask for 16:10 (desktop, above the fold) or 9:19.5 (mobile); real size is only close (measure it). Long pages: generate section-by-section (hero / middle / footer images) or one tall page per 3-4 sections, keeping the same bible. The HTML-render route is optional: use it only if the user asks for real HTML or for measured specs.
+
+## Words to use / avoid in web prompts
+Use: website page, landscape desktop 16:10, 1440 wide, header with N links, sidebar, hero, section, footer, narrow responsive layout. Avoid (lint fails): portrait, phone, status bar, 9:19.5, 9:16, Android, iOS, iPhone, bottom navigation, thumb zone, app screen, mobile app.
 
 ## 3. Floors in px (measured by `spec_audit.py` with `platform: web`)
 | Rule | Value |
