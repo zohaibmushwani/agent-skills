@@ -3,6 +3,7 @@
 
 Usage: python repo_probe.py repos.txt [--json out.json]
   repos.txt: one repo per line: owner/name or github.com/owner/name or a github URL (# comments ok)
+Repo names print as clickable markdown links (https://github.com/owner/name).
 Reports per repo: exists, stars, license (SPDX) + class, closed-app verdict, last push, archived,
 language bytes, number of files in the tree, and FLAGS:
   NO_SOURCE   - almost no code (README-only / binary-release repo)  -> feature spec, not a donor
@@ -116,9 +117,9 @@ def main(argv):
     print("| repo | stars | license | closed-app? | pushed | code KB | files | flags |\n|---|---|---|---|---|---|---|---|")
     for r in rows:
         if "NOT_FOUND" in r["flags"]:
-            print(f"| {r['repo']} | - | - | - | - | - | - | NOT_FOUND |")
+            print(f"| [{r['repo']}](https://github.com/{r['repo']}) | - | - | - | - | - | - | NOT_FOUND |")
             continue
-        print(f"| {r['repo']} | {r['stars']} | {r['license']} | {r['closed_app']} | {r['pushed']} | {r['code_bytes'] // 1000} | {r['files']} | {' '.join(r['flags']) or '-'} |")
+        print(f"| [{r['repo']}](https://github.com/{r['repo']}) | {r['stars']} | {r['license']} | {r['closed_app']} | {r['pushed']} | {r['code_bytes'] // 1000} | {r['files']} | {' '.join(r['flags']) or '-'} |")
     return 0
 
 

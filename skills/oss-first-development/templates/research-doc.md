@@ -5,15 +5,15 @@ Date: <YYYY-MM-DD>. Method: web dorks + identifier chaining (+ regional only if 
 What shape the solution takes, what is reused, what must be written, the 1-2 biggest traps.
 
 ## 1. Building blocks (one table per pillar)
-| Project | Label R/P/N | Evidence | License | Use |
+| Project (link) | Label R/P/N | Evidence | License | Use |
 |---|---|---|---|---|
-Mark VERIFIED/LEAD. R = usable base, P = learn-from, N = noise. Note whether the repo contains source.
+Write every project as `[owner/name](https://github.com/owner/name)` and key files as blob links. Mark VERIFIED/LEAD. R = usable base, P = learn-from, N = noise. Note whether the repo contains source.
 
 ## 2. Policy / security / legal findings
 Platform policies, licenses that block reuse, asset licenses, privacy/security traps (with sources).
 
 ## 3. Decision matrix
-| Project | Decision (reuse / adapt / idea / write) | License reason | What we take | Gap left |
+| Project (link) | Decision (reuse / adapt / idea / write) | License reason | What we take | Gap left |
 |---|---|---|---|---|
 
 ## 4. Gaps nobody filled (= our real work) and "better than existing" claims
@@ -32,3 +32,4 @@ Everything still LEAD, searches that returned nothing, blocked pages.
 P0..Pn small testable slices.
 
 ## Sources
+Markdown links only: `- [title](url)`.

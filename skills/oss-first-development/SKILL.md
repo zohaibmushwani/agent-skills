@@ -29,6 +29,7 @@ Work in `research/<topic-slug>/` (`scripts/scaffold_kit.py <topic>` creates it).
 8. **Plan.** Recommended architecture, decisions the user must make, what is NOT verified, prototype order, clone script (`scripts/make_clone_script.py`). Template: `templates/research-doc.md`. Present and stop for the user's decisions; do not start building inside this skill.
 
 ## Rules that keep it honest
+- **Every reference is a clickable link.** In notes and in the final reply, write each repo as `[owner/name](https://github.com/owner/name)`, each key file as a permalink `[Timeline.kt](https://github.com/owner/name/blob/<branch>/path/File.kt)`, and each docs page or app as `[title](url)`. Never a bare name, a bare path or a backticked URL. Put the link in the first table column and again in a closing "Sources" list. `repo_probe.py` already prints linked repo names; keep them.
 - **Study before writing:** read the matching file in a reference repo and list what you reuse (with license) vs write fresh.
 - **License is a hard gate.** GPL/AGPL code can be studied but not copied into a closed app; no license = ideas only; non-commercial blocks commercial use.
 - **Check that source exists.** A README claiming MIT with no code is a feature spec, not a donor.
