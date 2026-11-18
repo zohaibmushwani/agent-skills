@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: keyword-research-no-paid-tools
+expected_outcome: |
+  Does keyword and competitor research from store autocomplete and listings, labels every number MEASURED/ESTIMATE/UNKNOWN, and says search volume and downloads cannot be known for free.

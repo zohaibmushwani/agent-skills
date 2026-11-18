@@ -1,7 +1,7 @@
 {
   "name": "agent-skills",
-  "version": "0.2.3",
-  "description": "Five skills: oss-first-development (reuse open-source first), app-design-studio (mobile UI design repos with usability gates), screenshot-to-compose (design to Compose), android-compose-quality-gate (checklist + lint) and guidelines-log (durable rules).",
+  "version": "0.3.0",
+  "description": "Six skills: oss-first-development (reuse open-source first), app-design-studio (mobile UI design repos with usability gates), screenshot-to-compose (design to Compose), android-compose-quality-gate (checklist + lint) and guidelines-log (durable rules) and aso-research (free-data ASO).",
   "author": { "name": "zohaibmushwani" },
   "license": "MIT",
   "keywords": ["android", "jetpack-compose", "skills", "research", "open-source", "license-check", "mobile-design", "ui", "accessibility"]

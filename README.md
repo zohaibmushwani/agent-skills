@@ -1,6 +1,6 @@
 # agent-skills
 
-Five [Agent Skills](https://docs.claude.com) (`SKILL.md` format) for Claude Code and other skill-aware agents.
+Six [Agent Skills](https://docs.claude.com) (`SKILL.md` format) for Claude Code and other skill-aware agents.
 
 | Skill | What it does | Use it when |
 |---|---|---|
@@ -8,6 +8,7 @@ Five [Agent Skills](https://docs.claude.com) (`SKILL.md` format) for Claude Code
 | [`screenshot-to-compose`](skills/screenshot-to-compose) | Builds screenshots/mockups into a native Jetpack Compose UI: px to dp, sampled colours, observed vs inferred values, Iconify icons to VectorDrawable, generated (never cropped) artwork, side-by-side comparison with the reference. | You have screenshots or a design repo and want the Compose app. |
 | [`android-compose-quality-gate`](skills/android-compose-quality-gate) | Acceptance checklist and rules for Compose apps (MVI, RTL, text fit, device matrix, back, permissions, network/offline, motion) plus `compose_lint.py` and `strings_audit.py`. | Before calling an Android UI task done, or when reviewing a screen. |
 | [`guidelines-log`](skills/guidelines-log) | Records durable user rules the same turn and routes each to the right layer (always-on file, path-scoped rule, doc, skill, or a hook/lint script), checks contradictions and size first, and audits rule files (`rules_audit.py`). | You keep telling the agent the same rules every session, or CLAUDE.md has grown unwieldy. |
+| [`aso-research`](skills/aso-research) | ASO and market research for Google Play / App Store with free open data: autocomplete keyword ideas, competitor listings, metadata limit checks, keyword frequency, and honest MEASURED / ESTIMATE / UNKNOWN labels where paid tools (Sensor Tower, AppFigures) would be needed. | You want store-listing and competitor research without paid ASO tools. |
 | [`app-design-studio`](skills/app-design-studio) | Turns an app name into a full portrait, high-fidelity mobile screen set (splash to settings, states, dialogs, components) with no device frame, and audits it with measurable usability gates. | You need a complete mobile UI design repository, not one mockup. |
 
 ## Install
@@ -19,7 +20,7 @@ Five [Agent Skills](https://docs.claude.com) (`SKILL.md` format) for Claude Code
 **Manual:** copy a folder from `skills/` into `~/.claude/skills/` (all projects) or `<project>/.claude/skills/`.
 
 ## Requirements
-- Python 3.9+ (scripts use the standard library only; `screenshot-to-compose` scripts need Pillow: `pip install pillow`).
+- Python 3.9+ (scripts use the standard library only, except the Node probe in `aso-research`; `screenshot-to-compose` scripts need Pillow: `pip install pillow`).
 - `oss-first-development`: [GitHub CLI](https://cli.github.com) logged in (`gh auth login`) for repo probing and topic sweeps; a web search tool for dorks.
 - `app-design-studio`: Node 18+ and Playwright with Chromium for `render_screens.mjs` (HTML-render route); an image model is optional.
 
@@ -28,6 +29,7 @@ Five [Agent Skills](https://docs.claude.com) (`SKILL.md` format) for Claude Code
 - `app-design-studio`: `python skills/app-design-studio/scripts/run_gates.py skills/app-design-studio/assets/example` runs the contrast, token, touch-target and state-coverage gates on the bundled example. Contrast, token and element gates pass; the state-coverage gate reports FAIL on purpose, because the example is a small partial set (2 screens) so you can see what a missing state looks like.
 
 - `android-compose-quality-gate`: `python skills/android-compose-quality-gate/tests/run_tests.py` checks that both audit scripts flag the known defects in the fixtures; then run `compose_lint.py` on your `src` folder.
+- `aso-research`: `python skills/aso-research/tests/run_tests.py`; for live Google Play data `npm i google-play-scraper` then `node skills/aso-research/scripts/gplay_probe.mjs suggest "pdf read"` (smoke-tested: search, autocomplete and app details returned real data).
 - `guidelines-log`: `python skills/guidelines-log/tests/run_tests.py`, then `python skills/guidelines-log/scripts/rules_audit.py .` on your repo.
 
 ## What these skills will not do

@@ -1,4 +1,7 @@
 # Changelog
+## 0.3.0
+- Added aso-research: free-data ASO workflow (google-play-scraper probe, metadata checker, keyword frequency), tools review, store limits, honest data labels.
+
 ## 0.2.3
 - guidelines-log: Setup also adds the two instruction lines when the log exists but CLAUDE.md/AGENTS.md lacks them.
 

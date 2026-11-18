@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: checks-listing-limits
+expected_outcome: |
+  Validates the draft against store limits and flags stuffing and claim words in the title.
