@@ -1,4 +1,7 @@
 # Changelog
+## 0.6.3
+- app-design-studio: design-craft adds the brief skeleton that produced a first-attempt accept (signature interaction + marker mapping + exact chrome + single primary).
+
 ## 0.6.2
 - app-design-studio: critique no longer fails on placeholder values (user correction); new lessons (shared chrome drift, edit side effects, pin mapping); prompt_lint false positives fixed ("phone 1080x2400" as content, "thumbnails").
 
