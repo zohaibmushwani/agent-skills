@@ -1,6 +1,8 @@
 # Design craft: how to get a distinctive screen, not a template
 
-Why this file exists: an A/B run on the same screen (internal portal, requirement detail) showed that a **450-word locked prompt** (every string, count, hex and a long "do not add" list) produced a correct but mechanical screen, while a **130-word brief** (what it is, who for, the one job, the feel, and "make good design decisions yourself") produced a richer, more believable one: real hierarchy, a rewritten brief card, owners and statuses it invented sensibly. Constraints buy consistency; they also cap quality. Use each where it pays.
+Why this file exists: in a controlled comparison on one screen, a long locked prompt (every string, count and hex, plus a long negatives list) produced a correct but mechanical result, while a short brief (what it is, who for, its one job, the feel, and "make good design decisions yourself") produced a richer, more believable one. Constraints buy consistency; they also cap quality. Use each where it pays.
+
+**Bias guard (read first):** everything in this skill is an illustration of a pattern, not content to reuse. Never copy example product names, example copy, palettes, typefaces, layouts or "feel" words from this skill into a prompt; derive them from the user's brief each time. If two projects in a row come out looking alike, the prompt has been borrowing from an example.
 
 Method distilled from public design-skill research (Anthropic's frontend-design skill, UI UX Pro Max, Impeccable; ideas only, written in our own words).
 
@@ -42,20 +44,29 @@ Outlines, dividers, labels, numbering and chips must encode something about the 
 ## 7. Critique loop (every render)
 Open the image. Check: hierarchy in 2 seconds, one primary action, every string readable at its size, same nav/header as siblings. Write one corrective sentence for the single biggest problem and edit with that sentence only.
 
-## 8. Learned lessons (from the prompt log; add a line when a failure tag repeats)
-- **Faces:** models draw stock-photo faces for owners/avatars. Say "people appear only as initials in circles, never photos or faces" in every web-app prompt. (rejected twice: portal 01, ChatGPT dashboard)
-- **Cropping:** dense desktop pages come back cut at the edges. Say "the whole layout fits inside the frame with a margin; nothing is cropped at any edge"; fix with an edit pass, not a reroll. (portal 03 v1)
-- **Stale dates:** models default to the wrong year. State the month/year in the prompt. (portal 01)
-- **Generic dashboards:** mascot hero, emoji greeting, KPI tile row, promo banners, identical rounded cards appear whenever the prompt says "dashboard" without a job. Name the job and the facts instead. (ChatGPT home)
-- **Numbering:** 01/02/03 markers appear on lists that are not sequences; add "use numbering only where the content is a sequence". (portal 02)
-- **Over-constraining:** a 450-word locked first prompt gave a flatter screen than a 130-word brief. Brief first, lock later.
-- **Missing core:** if the prompt does not name the product's key interaction (original text vs understanding, open questions, owners and status), the model builds a generic dashboard around it. Put the key interaction first.
-- **Edit side effects:** an edit pass may add an outer rounded border/shadow; say "no outer border" in the edit instruction.
-- **Small, pale meta text:** IDs, counts and secondary labels come out around 12px and grey (seen in 3 of 5 rejected/fix runs). Add "smallest text is 13px, secondary text clearly readable, nothing pale grey on white" to web prompts and check it in the critique loop.
-- **Wrong interaction model (user rejected):** a task like "mark what should change on an existing screen" came back as a multi-section FORM (stepper, fields, side preview). Tool-like pages must be briefed by their interaction, not their fields: "a large canvas shows the current screen; click any element and a small box opens anchored to it where the requirement is typed; every note becomes a pin on the canvas and a row in a changes list" (Figma comments / Markup.io feel). Name the reference interaction in the prompt. Ask "could someone do this with three clicks and no reading?" in the critique loop.
-- **Pin/number mapping:** in canvas or annotation screens the model puts numbered pins on the wrong element (pin 1 on an item whose note is 3). Check every marker against its list row; fix with an edit naming the pin and the target. (portal 04)
-- **Edit side effects:** a fix pass changed an unrelated state (a selected radio went blank). Re-check the whole image after every edit.
-- **Distinctiveness stays at 3** when the brief says only "calm, trustworthy work tool" and the style reference is copied. Give each flow one bold idea in the brief (a signature element), not only a mood.
-- **Shared chrome drifts between screens** (sidebar items, badge counts): 3 of 4 portal screens needed an edit pass. Put the EXACT sidebar item list, badge numbers and selected item in every prompt of a set, and check chrome and counts across siblings before accepting. One cheap batch of edit passes fixed all three (run edits in parallel with `&` + `wait`).
-- **Placeholder values are not defects** (user correction): a price of $35.99 on one mock and $29.99 on another is irrelevant in high-fidelity design. Do not spend edit passes on cross-screen value consistency; spend them on structure, interaction, usability and aesthetics.
-- **What made a first-attempt accept (portal 06, avg 4.0):** the brief named (1) the signature interaction ("click an element and an inspector shows size, strings, states"), (2) the mapping between markers and checklist items, (3) the exact sidebar, (4) "initials only", dates and 13px floor, (5) the single primary and the secondary action. Reuse this skeleton for tool-like pages: *role + deliverable, signature idea, what each panel holds, the mapping, one primary, chrome/format/constraints, feel*.
+## 8. Learned lessons (generic, from the prompt log)
+Write lessons at the level of *model behaviour and prompt technique*. A lesson never names a product, a palette, a typeface or a layout recipe for one kind of product; the project-specific evidence stays in that project's `reports/prompt-log.jsonl`. Add a line only when a tag repeats (>= 2 entries, ideally across different projects); date it, and prune lines that stop being true.
+
+**Content the model invents**
+- People: image models draw photo-real faces for owners/avatars. If the product shows people, say how (initials in circles, abstract avatars, or named illustration style), and say "never photos or faces" when that is the rule.
+- Dates and "current" facts default to the model's own past; state the month and year when dates are visible.
+- Placeholder values (prices, names, counts, versions) need not agree between mock screens; do not spend edit passes on them. Check only counts and labels that must agree structurally on one screen (title count vs filter chips, badge vs list) and names that refer to the same thing.
+- Numbered markers (01/02/03) appear on lists that are not sequences; allow numbering only where order matters.
+
+**Layout and framing**
+- Dense desktop pages are often returned cropped at the edges; state "the whole layout fits inside the frame with a margin, nothing cropped at any edge" and fix with an edit pass, not a reroll.
+- Edit passes can add an outer border/shadow or change unrelated states (a selected control going blank). Add "no outer border" to edit instructions and re-check the whole image after every edit.
+- Shared chrome (navigation items, badge counts, header) drifts between screens of a set; put the exact chrome in every prompt of the set and check siblings before accepting. Edits run in parallel (`&` + `wait`) when fixing many screens.
+- Small, pale secondary text appears often; give a smallest-size floor in the prompt and check it in the critique.
+
+**Interaction and intent**
+- Tool-like pages must be briefed by their interaction, not their fields. A fields-only brief returns a multi-section form. Name the interaction ("click an element and a box opens anchored to it"; "inspector shows the element's properties") and a reference feel in the prompt.
+- Annotation/marker screens: the model places numbered markers on the wrong element or detaches them from their list rows. State the mapping in the prompt and verify every marker against its row.
+- If the prompt does not name the product's key interaction, the model builds a generic dashboard around it; put the key interaction first.
+- Over-constraining a first render flattens it; brief first, lock later.
+- Giving each screen one bold idea in the brief ("signature element") lifts distinctiveness; a mood alone ("calm, trustworthy") does not.
+
+**Process**
+- Brief skeleton that produced first-attempt accepts on tool-like pages: *who + deliverable, the signature interaction, what each panel holds, the mapping, one primary action (and one secondary), exact chrome + format + constraints, feel*.
+- Aspect or orientation words in the wrapper command override the prompt; keep the aspect only in the prompt and run image CLIs with stdin closed (see `prompt-templates/web.md`).
+- A generic-looking result is usually a generic brief: the word "dashboard", "app" or "platform" with no named job invites the template kit.

@@ -22,6 +22,7 @@ Set `"platform": "mobile" | "web"` in `inventory.json`. A prompt is written with
 
 ## Output rules (always)
 - The image is the UI itself, edge to edge: **no device frame, no phone/laptop mockup, no browser chrome, no extra background, no canvas around it.** (Presentation frames only if the user asks for boards.) Mobile: portrait screens. Web: landscape desktop pages and, where listed, the narrow layout; long pages as a tall single image or 2-3 section images of the same width.
+- Examples in this skill are illustrations of a pattern, never content: do not copy their names, copy, palettes, type or layouts into a prompt (bias guard in `references/design-craft.md`).
 - High fidelity: real copy, real icons, real imagery. No lorem ipsum, no placeholder brand names.
 - One design system across the whole set. Never invent a new style per screen.
 - Two prompt modes (`references/design-craft.md`): **brief** (short intent + the few facts that matter + the feel; default for first renders and S2 directions, gives the most distinctive result) and **locked** (exact strings, counts, bible block; for siblings after the pick and for fixes). Render brief first, look, then lock what must agree. Models fail on consistency far more than on beauty, but over-constraining the first render makes it mechanical.

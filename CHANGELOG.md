@@ -1,4 +1,7 @@
 # Changelog
+## 0.7.0
+- app-design-studio: lessons generalised. design-craft "Learned lessons" rewritten at the level of model behaviour and prompt technique (no product names, palettes, layouts or project evidence); bias guard added (examples are illustrations, never content); web prompt examples turned into placeholders; project-specific evidence stays in each project's prompt log.
+
 ## 0.6.3
 - app-design-studio: design-craft adds the brief skeleton that produced a first-attempt accept (signature interaction + marker mapping + exact chrome + single primary).
 

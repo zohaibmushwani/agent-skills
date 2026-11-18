@@ -8,16 +8,18 @@ Same 6 blocks as README.md (FORMAT, BIBLE, SCREEN, CONTENT, CONSISTENCY, DO NOT 
 - Narrow layout: `Narrow responsive layout of the same website page, 390px wide, one tall image as long as the content needs. Header shows logo and a menu button. No browser chrome, no device frame, no outer background.`
 - Mobile-first work tool only (`"mobile_first": true`): the narrow layout is the main set; bottom bar and sticky action are allowed and the lint allows narrow-device wording.
 
+*(All strings in angle brackets are placeholders to be replaced from the user's brief; never reuse them as copy.)*
+
 ## CONTENT block pattern (site home)
 ```
-Header: logo "[Name]" left, 4 links "Apps", "About", "Careers", "Contact", button "Get the app" right (the only filled button).
+Header: logo "<name>" left, <n <= 5> links "<link 1>" ... "<link n>", button "<primary CTA>" right (the only filled button).
 Hero: headline "<<=10 words>>", one-sentence subhead, primary button "<<label>>", secondary text link "<<label>>", right: one illustration/app screenshot described exactly.
 Section 2 "<<title>>": exactly 3 items, each icon + title + one line.
 Section 3 ... Final CTA band: headline + ONE button. Footer: 3 link columns, legal line.
 ```
 ## CONTENT block pattern (web-app page)
 ```
-Left sidebar (desktop) / drawer or bottom bar (narrow layout, mobile-first only): exactly 4 items - Inbox (selected), Requests, Library, Me.
+Left sidebar (desktop) / drawer or bottom bar (narrow layout, mobile-first only): exactly <n> items - <item 1> (selected), <item 2>, ... (list the real items; keep the same list on every page of the set).
 Page title + status chips (exact strings). Tabs: exactly 4 - ... Main content: cards/rows with exact count and exact strings.
 Sticky bottom/right action: ONE primary button "<<label>>".
 ```
