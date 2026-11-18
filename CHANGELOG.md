@@ -1,4 +1,8 @@
 # Changelog
+## 0.4.0
+- Added store-screenshots (Codex-rendered, real UI as reference, build_prompts.py, fit_store.py, check_set.py).
+- app-design-studio: contrast check and on-colour text before S2, platform status bar, save-then-send prompts, Codex image-quota preflight.
+
 ## 0.3.0
 - Added aso-research: free-data ASO workflow (google-play-scraper probe, metadata checker, keyword frequency), tools review, store limits, honest data labels.
 

@@ -1,0 +1,52 @@
+{
+ "app": "Example Reader",
+ "size": [
+  1080,
+  1920
+ ],
+ "font": {
+  "head": "Anton",
+  "body": "Manrope"
+ },
+ "colors": {
+  "bg": "#14213D",
+  "head": "#FFFFFF",
+  "accent": "#FCA311",
+  "accentText": "#14213D"
+ },
+ "frames": [
+  {
+   "type": "poster",
+   "head": "Every PDF, one tap",
+   "emph": "one tap",
+   "sub": "Read, mark and find anything",
+   "scene": "A large amber disc rises from the bottom edge with a stack of paper documents turning into a glowing phone."
+  },
+  {
+   "type": "ui",
+   "head": "Find files instantly",
+   "emph": "instantly",
+   "screen": "screens/library-01.png",
+   "pop": "the file row 'Invoice 0412.pdf'"
+  },
+  {
+   "type": "zoom",
+   "head": "Read without clutter",
+   "screen": "screens/reader-01.png",
+   "sticker": "night mode"
+  },
+  {
+   "type": "notify",
+   "head": "Pick up where you left",
+   "noteTitle": "Example Reader",
+   "noteText": "Continue \"Annual Report\" at page 14"
+  }
+ ],
+ "aspect": "9:16",
+ "style": {
+  "look": "bold editorial, deep navy colour field, one amber accent, generous space",
+  "headFont": "very bold condensed sans-serif (Anton-like)",
+  "art": "clean flat shapes; amber disc motif that continues between frames"
+ },
+ "styleFrame": "final/01.png"
+}

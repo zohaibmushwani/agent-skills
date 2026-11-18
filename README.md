@@ -1,6 +1,6 @@
 # agent-skills
 
-Six [Agent Skills](https://docs.claude.com) (`SKILL.md` format) for Claude Code and other skill-aware agents.
+Seven [Agent Skills](https://docs.claude.com) (`SKILL.md` format) for Claude Code and other skill-aware agents.
 
 | Skill | What it does | Use it when |
 |---|---|---|
@@ -9,6 +9,7 @@ Six [Agent Skills](https://docs.claude.com) (`SKILL.md` format) for Claude Code 
 | [`android-compose-quality-gate`](skills/android-compose-quality-gate) | Acceptance checklist and rules for Compose apps (MVI, RTL, text fit, device matrix, back, permissions, network/offline, motion) plus `compose_lint.py` and `strings_audit.py`. | Before calling an Android UI task done, or when reviewing a screen. |
 | [`guidelines-log`](skills/guidelines-log) | Records durable user rules the same turn and routes each to the right layer (always-on file, path-scoped rule, doc, skill, or a hook/lint script), checks contradictions and size first, and audits rule files (`rules_audit.py`). | You keep telling the agent the same rules every session, or CLAUDE.md has grown unwieldy. |
 | [`aso-research`](skills/aso-research) | ASO and market research for Google Play / App Store with free open data: autocomplete keyword ideas, competitor listings, metadata limit checks, keyword frequency, and honest MEASURED / ESTIMATE / UNKNOWN labels where paid tools (Sensor Tower, AppFigures) would be needed. | You want store-listing and competitor research without paid ASO tools. |
+| [`store-screenshots`](skills/store-screenshots) | Headline-led App Store / Google Play screenshot sets like top-chart apps: message map, set style, Codex prompts with the real screens attached, text-and-truth check, exact store sizes. | You need store listing screenshots that convert. |
 | [`app-design-studio`](skills/app-design-studio) | Turns an app name into a full portrait, high-fidelity mobile screen set (splash to settings, states, dialogs, components) with no device frame, and audits it with measurable usability gates. | You need a complete mobile UI design repository, not one mockup. |
 
 ## Install

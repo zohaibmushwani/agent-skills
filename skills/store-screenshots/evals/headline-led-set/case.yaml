@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: headline-led-set
+expected_outcome: |
+  Plans a headline-led 5-8 frame set with a poster first frame, real UI as reference, exact quoted text and a verification pass.

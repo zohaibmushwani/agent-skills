@@ -8,6 +8,7 @@ Product: <one line what it does, for whom>
 Platform feel: <Material 3 leaning | iOS-native leaning | neutral>; portrait 9:19.5; UI only, full-bleed, no device frame, no phone mockup, no outer background.
 Mood: <3 words, e.g. calm, precise, warm>
 Palette: background <hex>, surface <hex>, primary <hex>, accent <hex>, text <hex>, secondary text <hex>, success/warn/error <hex/hex/hex>. Usage ~60% neutral / 30% surface-text / 10% accent.
+On-colours: text on primary <hex>, text on accent <hex>, badge text <hex> (each pair >= 4.5:1; check with contrast_check.py before rendering).
 Typography: headings <font>, body <font>; scale 32/24/20/16/14/12; weights 400/600/700. Sentence case.
 Shape: corner radius <8/12/16/28>; buttons <pill|rounded>; cards <flat|soft shadow>.
 Spacing: 4/8 grid; screen margin 20; section gap 24-32; list row height 64; touch target >= 48.
@@ -15,7 +16,7 @@ Iconography: <outline|filled|duotone> set <Iconify set id, e.g. lucide / solar /
 Imagery: <illustration style | photography style | abstract shapes>; treatment <grain/none>; one image moment per screen at most.
 Navigation: <bottom bar with 4 tabs: ...>; top bar <style>.
 Components: primary button <style>, input <style>, chip <style>, card <style>.
-Status bar: <time 9:41, battery, signal>, light/dark per screen; gesture bar area clear.
+Status bar: Android = time left ("12:30"), wifi/signal/battery right, no notch; iOS = "9:41" with Dynamic Island. Light/dark per screen; gesture bar area clear.
 Avoid: <from ai-tells-avoid.md + app-specific>.
 ```
 
