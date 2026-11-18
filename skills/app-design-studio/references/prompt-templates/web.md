@@ -35,3 +35,8 @@ Sticky bottom/right action: ONE primary button "<<label>>".
 ## Tool notes (web)
 - Codex image_gen (gpt-image): returns ~900x1600 for 9:16; for desktop ask 16:10 and expect a near ratio; send one image first, then batch 3-5 per call. All three style directions can render in one batch.
 - Show the same hero page for every direction at S2 (home for a site, the most important detail/list for a web app) so the human pick compares like with like.
+
+- **The wrapper command is part of the prompt.** When calling `codex exec`, do not write "9:16 portrait" in the wrapper; say "use the aspect ratio described in the prompt". A wrapper that says portrait overrides a landscape prompt (seen in a real run).
+- **Always run `codex exec ... < /dev/null`.** Without it, a backgrounded or piped run prints "Reading additional input from stdin..." and waits forever (the real cause of 10+ minute hangs; with it, one image takes about 1-2 minutes).
+- `codex exec "prompt" -i ref.png < /dev/null`: put the prompt BEFORE `-i` (the flag swallows following arguments as files).
+- Codex can hang with no output; list processes (`ps -eo pid,etime,command | grep vendor/aarch64`), kill only your own stale `codex exec` runs, and rerun. macOS has no `timeout` command.

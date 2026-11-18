@@ -1,5 +1,7 @@
 # AI tells and anti-patterns (avoid)
 
+Calibrated list of generic defaults (cream+serif+clay, dark+acid accent, broadsheet, SaaS card kit, template chrome) is in `design-craft.md` section 3; this file is the longer checklist.
+
 Why: image models fall to the statistical average. Naming the defaults is how you steer away from them. Banning one default can summon the next, so also state what to prefer.
 
 ## Visual

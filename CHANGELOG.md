@@ -1,4 +1,8 @@
 # Changelog
+## 0.5.2
+- app-design-studio: new `references/design-craft.md` (brief vs locked prompt modes, 10-line design plan with self-review, calibrated generic-defaults list, boldness in one place, copy rules, critique loop; ideas from Anthropic's frontend-design skill, written in our own words). Verified by an A/B run: a 130-word brief gave a richer screen than a 450-word locked prompt; landscape desktop web prompts now come out landscape.
+- prompt_lint no longer flags a product domain like "Android app studio"; Codex notes: always `codex exec ... < /dev/null`, no aspect in the wrapper, put `-i` after the prompt.
+
 ## 0.5.1
 - app-design-studio: target = profile. Mobile wording (portrait, phone, status bar, 9:19.5, bottom nav, dp/sp) moved out of shared rules into mobile-only blocks; website default is landscape desktop 16:10 with a narrow 390px responsive layout (`mobile_first` flag for mobile-first work tools). New keyword-hygiene rule and `scripts/prompt_lint.py` (wired into run_gates) fail prompts that use another target's vocabulary.
 

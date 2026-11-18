@@ -24,7 +24,7 @@ Set `"platform": "mobile" | "web"` in `inventory.json`. A prompt is written with
 - The image is the UI itself, edge to edge: **no device frame, no phone/laptop mockup, no browser chrome, no extra background, no canvas around it.** (Presentation frames only if the user asks for boards.) Mobile: portrait screens. Web: landscape desktop pages and, where listed, the narrow layout; long pages as a tall single image or 2-3 section images of the same width.
 - High fidelity: real copy, real icons, real imagery. No lorem ipsum, no placeholder brand names.
 - One design system across the whole set. Never invent a new style per screen.
-- State before layout: in every prompt write the facts first (exact strings, counts, selected tab, numbers that must agree), then the layout, then explicit negatives. Models fail on consistency far more than on beauty.
+- Two prompt modes (`references/design-craft.md`): **brief** (short intent + the few facts that matter + the feel; default for first renders and S2 directions, gives the most distinctive result) and **locked** (exact strings, counts, bible block; for siblings after the pick and for fixes). Render brief first, look, then lock what must agree. Models fail on consistency far more than on beauty, but over-constraining the first render makes it mechanical.
 - Edit, don't reroll: fix one wrong string with an edit pass naming only that change; a full reroll throws away everything already approved.
 - No real brands, logos or real people's faces; fictional names and generic marks only. Never write API keys into the repo.
 - Reply to the user in the language they write in (often Roman Urdu/Hinglish); files and prompts stay English.
@@ -36,7 +36,7 @@ Work in the user's project folder under `design/<app-slug>/` (layout: `reference
 
 **S1 Screen inventory.** Build `inventory.json` from `references/screen-taxonomy.md` (web: `references/web-design.md` section 4): fixed core (splash, language, onboarding, permissions, auth, home, settings) + feature screens specific to this app + details + states + dialogs + sheets + components. Each item has id, group, purpose, states, priority. Show the user a compact list; confirm before spending image credits.
 
-**S2 Design bible + 3 directions (human gate).** Write the bible (`references/design-bible-template.md`) as three short alternatives (different mood, palette logic, type, shape language). Each bible names the text colour on every filled colour (on-primary, on-accent, badge text) and the platform's status bar (Android: time left, icons right; iOS: 9:41 style). Before rendering, put each direction's palette in a small tokens file and run `scripts/contrast_check.py` on it: a direction that only looks good with failing contrast must not reach the human pick. Write each prompt to `prompts/<id>.<direction>.md` first and send exactly that file's text (the saved prompt is the reproducible one). Render one hero screen per direction (web: the same page, desktop and mobile). Batch all three in one Codex call. **Stop and let the user pick** - taste is the one thing scripts cannot judge, so this is where the human decides. Record the choice in `DESIGN.md`.
+**S2 Design plan + bible + 3 directions (human gate).** First write a 10-line design plan per direction (`references/design-craft.md` section 2) and self-review it against the generic defaults. Then write the bible (`references/design-bible-template.md`) as three short alternatives (different mood, palette logic, type, shape language). Each bible names the text colour on every filled colour (on-primary, on-accent, badge text) and the platform's status bar (Android: time left, icons right; iOS: 9:41 style). Before rendering, put each direction's palette in a small tokens file and run `scripts/contrast_check.py` on it: a direction that only looks good with failing contrast must not reach the human pick. Write each prompt to `prompts/<id>.<direction>.md` first and send exactly that file's text (the saved prompt is the reproducible one). Render one hero screen per direction (web: the same page, desktop and mobile). Batch all three in one Codex call. **Stop and let the user pick** - taste is the one thing scripts cannot judge, so this is where the human decides. Record the choice in `DESIGN.md`.
 
 **S3 Tokens.** From the chosen direction write `tokens.json` (colors light/dark, type scale, spacing 4/8 grid, radius, elevation, icon size, touch target). Run `scripts/contrast_check.py tokens.json` and fix failing pairs now - cheaper than fixing 40 screens later.
 
@@ -56,7 +56,7 @@ Work in the user's project folder under `design/<app-slug>/` (layout: `reference
 Floors depend on target: mobile = dp/sp numbers below; web = px floors in `references/web-design.md` section 3 (44px hit area, body >= 16px, 65ch lines, no horizontal scroll at 390). Treat usability as a floor and aesthetics as the ceiling. Floor numbers are non-negotiable because they are measurable: touch targets >= 48dp (44pt iOS), body text >= 16sp and nothing under 12sp, contrast 4.5:1 (3:1 large text and icons), one primary action per screen, key actions in the lower thumb zone, 4/8 spacing grid. Above the floor, spend personality: a distinctive type pairing, a controlled accent, one memorable illustration or image moment per flow, generous spacing. When they conflict (e.g. a pale-grey elegant label), usability wins and you recover the elegance elsewhere (weight, spacing, size contrast), not by lowering the floor.
 
 ## Avoid ("AI tells")
-Read `references/ai-tells-avoid.md` before writing the first prompt. The short version: purple-blue gradients, glass cards for no reason, box-in-box nesting, fake chart spam, twelve-widget homes, generic icon-pack mixes, tiny decorative labels, lorem ipsum, cloned screens with small edits.
+Read `references/design-craft.md` and `references/ai-tells-avoid.md` before writing the first prompt. The short version: purple-blue gradients, glass cards for no reason, box-in-box nesting, fake chart spam, twelve-widget homes, generic icon-pack mixes, tiny decorative labels, lorem ipsum, cloned screens with small edits.
 
 ## Reference map
 - `references/screen-taxonomy.md` - what screens/states/dialogs/sheets exist and when (MOBILE target only).
@@ -65,6 +65,7 @@ Read `references/ai-tells-avoid.md` before writing the first prompt. The short v
 - `references/aesthetic-vs-usability.md` - dials, floors, rubric, regenerate rules.
 - `references/design-bible-template.md` - the block repeated in every prompt.
 - `references/prompt-templates/` - per screen type prompts.
+- `references/design-craft.md` - brief vs locked prompts, design plan, generic defaults, boldness in one place, copy rules, critique loop.
 - `references/ai-tells-avoid.md` - anti-patterns.
 - `references/repo-layout.md` - folder layout and JSON schemas.
 - `references/image-qa-loop.md` - the per-image verify/edit loop, optional HTML truth layer, strings.json.

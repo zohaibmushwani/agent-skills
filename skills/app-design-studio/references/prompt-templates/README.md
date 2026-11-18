@@ -2,7 +2,9 @@
 
 **Pick your profile first.** Mobile app target: use this file. Website / web-app target: use `web.md` in this folder instead of the mobile FORMAT, CONTENT and per-screen lists below (only the block order is shared); do not copy mobile wording into a web prompt (`scripts/prompt_lint.py` checks).
 
-Every image prompt has the same 6 blocks in this order. Order matters: the model weights the start most, and the bible must not be diluted.
+**Two modes** (`../design-craft.md`): *brief* for first renders (80-150 words: product, audience, the screen's job, the facts that must be true, the feel, "make good design decisions yourself", plus the FORMAT line) and *locked* (the 6 blocks below) for siblings after the pick and for fixes. Start with brief; lock only what must agree.
+
+Every locked image prompt has the same 6 blocks in this order. Order matters: the model weights the start most, and the bible must not be diluted.
 
 ```
 1. FORMAT      <from the profile>. MOBILE: Portrait mobile app screen, 9:19.5. Show ONLY the app UI, full-bleed. No phone frame, no device mockup, no outer background, no shadow around the screen.
@@ -48,3 +50,4 @@ Rules: quote every visible string; give counts ("exactly 4"); name the selected 
 - Always write the prompt to `prompts/<id>.md` **before** sending and send that exact text; never rebuild it afterwards (rebuilt prompts drift from what was sent).
 - Codex/gpt-image has a separate image quota (`imagegen_premium`) that `codex_status` does not show. Before a batch, send ONE image and check it succeeded; on "usage limit reached" stop, record the reset time in STATUS.md, and offer the HTML-render route or waiting. Never switch to a paid API key without the user's consent.
 - Every filled button/badge in a prompt names its text colour ("dark text #1A1206 on amber"), otherwise models default to white and fail contrast.
+- Codex CLI: always `codex exec ... < /dev/null` (otherwise it can wait on stdin forever when run in the background); the wrapper text must not restate an aspect that contradicts the prompt.
