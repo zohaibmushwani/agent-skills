@@ -1,4 +1,7 @@
 # Changelog
+## 0.6.1
+- app-design-studio: self-critique loop (`references/critique-template.md`): every render is critiqued for usability (pass/fail with evidence) and aesthetics (rubric), then fixed by edit pass or rejected and regenerated automatically, with reasons logged. Lessons added from the portal run: wrong interaction model (form instead of canvas), pin/number mapping, edit side effects, distinctiveness.
+
 ## 0.6.0
 - app-design-studio: prompt-log system. `scripts/prompt_log.py add|summary` records every accept/fix/reject with prompt, mode, tags and reason, and summarises accept rate per prompt mode and recurring failure tags (a tag rejected twice is promoted into `references/design-craft.md` "Learned lessons", seeded with 9 lessons from a real portal run). SKILL.md S7 now requires a verdict + log entry for every generated image.
 
