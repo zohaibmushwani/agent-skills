@@ -8,7 +8,7 @@ Usage:
 
 Storage: <design-dir>/reports/prompt-log.jsonl (one JSON per line, append-only).
 Tags (free text allowed, prefer these): faces, cropped, wrong-orientation, generic-tell, missing-core, stale-date,
-count-mismatch, small-text, numbering, outer-frame, label-wrong, inconsistent-nav, over-constrained, other.
+count-mismatch, zoomed-in, small-text, numbering, outer-frame, label-wrong, inconsistent-nav, over-constrained, other.
 Rule: when the same tag is rejected >= 2 times, promote it to references/design-craft.md "Learned lessons".
 """
 import argparse

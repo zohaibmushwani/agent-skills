@@ -1,4 +1,7 @@
 # Changelog
+## 0.8.1
+- app-design-studio: generic lessons on zoomed-in desktop renders (proportional SCALE paragraph, no oversized style reference), layout edits that re-crop (regenerate instead), critique template gains an "Avoid next time" line fed into the next prompt, new `zoomed-in` log tag.
+
 ## 0.8.0
 - app-design-studio: `references/interaction-and-density.md` (word/density budget, one idea per panel, progressive disclosure, visible interaction state, review questions; distilled from public UX rule lists incl. MIT-licensed UI UX Pro Max, with a warning not to take keyword-matched style/pattern picks from such databases). Critique template now fails text-heavy or crowded screens. New generic lessons: density target in the brief, explicit state words, vendor logos.
 

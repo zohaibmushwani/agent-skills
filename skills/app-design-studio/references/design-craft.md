@@ -55,8 +55,10 @@ Write lessons at the level of *model behaviour and prompt technique*. A lesson n
 
 **Layout and framing**
 - Dense desktop pages are often returned cropped at the edges; state "the whole layout fits inside the frame with a margin, nothing cropped at any edge" and fix with an edit pass, not a reroll.
+- An edit pass that changes layout in more than one place tends to re-crop the page (sidebar or header pushed against an edge) even when the edit text says not to. When two or more layout defects exist, fold all fixes into the brief and regenerate with the defects in the Avoid list; keep edit passes for a single text or colour change.
 - Edit passes can add an outer border/shadow or change unrelated states (a selected control going blank). Add "no outer border" to edit instructions and re-check the whole image after every edit.
 - Shared chrome (navigation items, badge counts, header) drifts between screens of a set; put the exact chrome in every prompt of the set and check siblings before accepting. Edits run in parallel (`&` + `wait`) when fixing many screens.
+- Zoomed-in output: models return a desktop page scaled up (big type, thin margins, few items filling the frame) and edit passes re-crop it. Wording like "normal desktop scale" does NOT fix it. What worked: a SCALE paragraph that states text as a share of the image ("body text about 1.3% of the image height, secondary about 1.1%, page title about 2.4%, sidebar about 14% of the width") plus "a screenshot of a real app on a large monitor, wide margins, plenty of empty space", and keeping content sparse. Adding more rows or sub-headings to force a smaller scale made the page text-heavy and tight at the edges; prefer the proportions. Also say "no outer border or black edge around the image". Put the scale paragraph in every prompt of the set and in the Avoid list of each retry; do not use an oversized accepted image as a style reference (it carries the scale over).
 - Small, pale secondary text appears often; give a smallest-size floor in the prompt and check it in the critique.
 
 **Interaction and intent**

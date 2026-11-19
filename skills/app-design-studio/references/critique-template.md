@@ -13,6 +13,7 @@ Usability (pass/fail + evidence):
 Density and interaction (`interaction-and-density.md`): visible words within budget? anything said twice? one idea per panel? room between groups (squint test)? the state of the key interaction and the next step visible? Fail on crowding or text-heaviness like any other usability FAIL.
 Aesthetics (1-5, one line of evidence each): hierarchy, rhythm, typography, colour, imagery/icons, distinctiveness, consistency, delight -> average
 Verdict: ACCEPT | FIX (edit pass, name the exact change) | REJECT (regenerate; say what the new prompt changes)
+Avoid next time (this screen): <3-6 short generic phrases taken from the defects above, e.g. "zoomed in", "text touching the edge", "same status said twice">  -> paste into the next prompt for this screen as an "Avoid:" line (a regenerate or the next sibling), do not rely on remembering them.
 Lesson for next project: <one line, or "none">
 ```
 Rules: average < 4.0, or any usability FAIL -> not accepted. Prefer FIX (one edit pass naming only the defect) over regenerate; max 2 edit passes + 1 regenerate per screen, then flag to the user. Log with `scripts/prompt_log.py add ...`; reject/fix reasons use the standard tags so repeats surface in `summary`.
